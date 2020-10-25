@@ -25,4 +25,10 @@ public class PrincipalActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
 
     }
+
+    public void onClickTransferencia(View view) {
+        Intent intent = new Intent(PrincipalActivity.this, TransferActivity.class);
+        startActivityForResult(intent, 0);
+
+    }
 }
