@@ -5,45 +5,52 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class GridAdapter<T> extends ArrayAdapter<T> {
-    public GridAdapter(@NonNull Context context, List<T> objects) {
-        super(context, 0, objects);
+public class GridAdapter extends BaseAdapter {
+
+    private Context context;
+    private ArrayList<String> arrayList;
+
+    public GridAdapter(Context context, ArrayList<String> arrayList) {
+        this.context = context;
+        this.arrayList = arrayList;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //Obteniendo una instancia del inflater
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        //Guardar la referencia del View de la fila
-        View listItemView = convertView;
-
-        //Comprobando si el View existe
-        if (convertView == null) {
-            //Si no existe, entonces inflarlo con two_line_list_item
-            listItemView = inflater.inflate(R.layout.image_list_item, parent, false);
-            //listItemView = inflater.inflate(android.R.layout.two_line_list_item, parent, false);
-        }
-
-        //Obteniendo las referencias de los textViews
-        TextView text = (TextView) listItemView.findViewById(R.id.gridText);
-
-        //Obteniendo la instancia del item posicion actual
-        Cuenta item = (Cuenta) getItem(position);
-
-        text.setText(item.getNumCuenta());
-
-        //Devolver al ListView la fila creada
-        return listItemView;
-
+    public int getCount() {
+        return arrayList.size();
     }
+
+    @Override
+    public Object getItem(int posicion) {
+        return arrayList.get(posicion);
+    }
+
+    @Override
+    public long getItemId(int posicion) {
+        return posicion;
+    }
+
+    @Override
+    public View getView(int posicion, View convertView, ViewGroup viewGroup) {
+        if(convertView == null){
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.item_grid, null);
+        }
+        TextView gridText = (TextView) convertView.findViewById(R.id.gridViewText);
+        gridText.setText(arrayList.get(posicion));
+        return convertView;
+    }
+
 }

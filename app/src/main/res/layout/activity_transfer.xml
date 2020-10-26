@@ -47,20 +47,15 @@
         android:layout_width="380dp"
         android:layout_height="75dp"
         android:layout_marginStart="16dp"
-        android:columnWidth="160px"
+        android:columnWidth="70dp"
         android:horizontalSpacing="5dp"
         android:numColumns="auto_fit"
+        android:gravity="center"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" >
-
-        <TextView
-            android:id="@+id/gridText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </GridView>
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:orientation="vertical"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -111,7 +106,7 @@
         android:id="@+id/spinner2"
         android:layout_width="380dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"

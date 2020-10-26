@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DatosCuenta"
+            android:parentActivityName=".TransferActivity"></activity>
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".TransferActivity"></meta-data>
     </application>
 
 </manifest>
