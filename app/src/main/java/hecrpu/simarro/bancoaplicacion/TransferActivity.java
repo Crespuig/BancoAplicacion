@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,9 @@ public class TransferActivity extends AppCompatActivity {
 
     private GridView gridView;
     private GridAdapter gridAdapter;
+    private Spinner spinnerCuenta;
+    private Spinner spinnerDivisa;
+    private DivisaAdapter divisaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,19 @@ public class TransferActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Spinner cuenta
+        spinnerCuenta = (Spinner) findViewById(R.id.spinnerTransfer);
+        spinnerCuenta.setAdapter(gridAdapter);
+
+        //Spinner divisa
+        ArrayList<String> divisaArray = new ArrayList<>();
+        divisaArray.add("€");
+        divisaArray.add("$");
+        spinnerDivisa = (Spinner) findViewById((R.id.divisaTransfer));
+        divisaAdapter = new DivisaAdapter(this, divisaArray);
+        spinnerDivisa.setAdapter(divisaAdapter);
+
 
     }
 
