@@ -1,22 +1,17 @@
 package hecrpu.simarro.bancoaplicacion;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatosCuenta extends AppCompatActivity {
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.activity_datos_cuenta);
+public class DatosCuenta {
+    static List CUENTA = new ArrayList<Cuenta>();
 
-        getSupportActionBar().setTitle(getIntent().getExtras().get("Número cuenta").toString());
-
+    static {
+        CUENTA.add(new Cuenta("Cuenta 1", "1234", 100.00f));
+        CUENTA.add(new Cuenta("Cuenta 2", "5678", 200.00f));
+        CUENTA.add(new Cuenta("Cuenta 3", "9101", 300.00f));
+        CUENTA.add(new Cuenta("Cuenta 4", "1213", 400.00f));
     }
 
 

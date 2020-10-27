@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/gridTransfer" />
 
     <RadioButton
-        android:id="@+id/transferRadioButton"
+        android:id="@+id/transferRadioButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <RadioButton
-        android:id="@+id/tranferRadioButton1"
+        android:id="@+id/transferRadioButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -86,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.259"
-        app:layout_constraintStart_toEndOf="@+id/transferRadioButton"
+        app:layout_constraintStart_toEndOf="@+id/transferRadioButton2"
         app:layout_constraintTop_toBottomOf="@+id/transferTextView3"
         app:layout_constraintVertical_bias="0.04" />
 

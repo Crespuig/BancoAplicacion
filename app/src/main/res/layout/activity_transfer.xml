@@ -17,7 +17,8 @@
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/importeTransfer"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <EditText
         android:id="@+id/importeTransfer"
@@ -26,11 +27,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Introduce el importe"
+        android:visibility="invisible"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cuentaDestinoTransfer" />
+        app:layout_constraintTop_toBottomOf="@+id/cuentaDestinoTransfer"
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -38,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.36"
+        app:layout_constraintGuide_percent="0.45"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -52,28 +58,31 @@
         android:id="@+id/transferTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Realizar Transferencia"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/transferTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:text="Cuenta Origen:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transferTextView1" />
+        app:layout_constraintTop_toBottomOf="@+id/transferTextView1"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <GridView
         android:id="@+id/gridTransfer"
-        android:layout_width="393dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:columnWidth="70dp"
         android:gravity="center"
@@ -83,47 +92,50 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transferTextView2" />
+        app:layout_constraintTop_toBottomOf="@+id/transferTextView2"
+        android:background="#FFE0B2" />
 
     <TextView
         android:id="@+id/transferTextView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
         android:text="Cuenta Destino:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridTransfer" />
+        app:layout_constraintTop_toBottomOf="@+id/gridTransfer"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
 
     <RadioGroup
         android:id="@+id/radioGrTransfer"
-        android:layout_width="328dp"
-        android:layout_height="57dp"
+        android:layout_width="306dp"
+        android:layout_height="58dp"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/transferTextView3"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
 
         <RadioButton
-            android:id="@+id/tranferRadioButton1"
+            android:id="@+id/transferRadioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Ajena" />
+            android:text="Propia" />
 
         <RadioButton
-            android:id="@+id/transferRadioButton"
+            android:id="@+id/transferRadioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Propia" />
+            android:text="Ajena" />
     </RadioGroup>
 
     <Spinner
@@ -131,20 +143,20 @@
         android:layout_width="307dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <CheckBox
         android:id="@+id/checkBoxTransfer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="48dp"
         android:text="Enviar Justificante"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -154,7 +166,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorPrimary"
         android:text="OK"
         android:textColor="@android:color/white"
@@ -169,7 +181,7 @@
         android:id="@+id/transferButtonCancelar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorPrimary"
         android:text="CANCELAR"
@@ -184,13 +196,16 @@
         android:layout_width="307dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:hint="Introduce la cuenta de destino"
         android:inputType="textPersonName"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerTransfer" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTransfer"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -17,40 +18,35 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridAdapter extends BaseAdapter {
+public class GridAdapter<T> extends ArrayAdapter<T> {
 
-    private Context context;
-    private ArrayList<String> arrayList;
-
-    public GridAdapter(Context context, ArrayList<String> arrayList) {
-        this.context = context;
-        this.arrayList = arrayList;
+    private int layout;
+    public GridAdapter(Context context, List<T> objects, @LayoutRes int layout) {
+        super(context, 0, objects);
+        this.layout = layout;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return arrayList.size();
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View gridView = convertView;
 
-    @Override
-    public Object getItem(int posicion) {
-        return arrayList.get(posicion);
-    }
-
-    @Override
-    public long getItemId(int posicion) {
-        return posicion;
-    }
-
-    @Override
-    public View getView(int posicion, View convertView, ViewGroup viewGroup) {
-        if(convertView == null){
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.item_grid, null);
+        if (null == convertView) {
+            gridView = inflater.inflate(layout, parent, false);
         }
-        TextView gridText = (TextView) convertView.findViewById(R.id.gridViewText);
-        gridText.setText(arrayList.get(posicion));
-        return convertView;
+
+        TextView nom = (TextView) gridView.findViewById(R.id.txtNombre);
+        TextView numCuenta = (TextView) gridView.findViewById(R.id.txtNumCuenta);
+        TextView saldo = (TextView) gridView.findViewById(R.id.txtSaldo);
+
+        Cuenta item = (Cuenta) getItem(position);
+
+        nom.setText(item.getNombre());
+        numCuenta.setText(item.getNumCuenta());
+        saldo.setText(String.valueOf(item.getSaldo()) + "€");
+
+        return gridView;
     }
 
 }

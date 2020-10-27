@@ -37,9 +37,9 @@ public class DivisaAdapter extends BaseAdapter {
     public View getView(int posicion, View convertView, ViewGroup viewGroup) {
         if(convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.item_grid, null);
+            convertView = layoutInflater.inflate(R.layout.item_spinner_divisa, null);
         }
-        TextView gridText = (TextView) convertView.findViewById(R.id.gridViewText);
+        TextView gridText = (TextView) convertView.findViewById(R.id.txtDivisa);
         gridText.setText(arrayList.get(posicion));
         return convertView;
     }
