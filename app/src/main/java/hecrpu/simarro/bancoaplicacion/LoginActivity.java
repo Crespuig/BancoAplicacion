@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         api = MiBancoOperacional.getInstance(this.getApplicationContext());
 
-        btnAcceder = (Button)findViewById(R.id.button2);
+        btnAcceder = (Button)findViewById(R.id.btnAcceder);
         btnAcceder.setOnClickListener(this);
 
 
