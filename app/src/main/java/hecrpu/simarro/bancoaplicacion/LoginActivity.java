@@ -5,63 +5,49 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 
-import hecrpu.simarro.bancoaplicacion.bd.MiBD;
 import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
-public class LoginActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText usuario;
     EditText password;
-
+    MiBancoOperacional api;
+    Button btnAcceder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        usuario = (EditText)findViewById(R.id.usuario);
+        password = (EditText)findViewById(R.id.password);
+
+
+        api = MiBancoOperacional.getInstance(this.getApplicationContext());
+
+        btnAcceder = (Button)findViewById(R.id.button2);
+        btnAcceder.setOnClickListener(this);
+
+
     }
 
-    public void onClickDashboard(View view) {
-        usuario = (EditText) findViewById(R.id.usuario);
-        password = (EditText) findViewById(R.id.password);
-
-        MiBancoOperacional api = MiBancoOperacional.getInstance(this.getApplicationContext());
+    @Override
+    public void onClick(View view) {
         Cliente c = new Cliente();
+        c.setNif(usuario.getText().toString());
+        Toast.makeText(LoginActivity.this, usuario.getText().toString(), Toast.LENGTH_SHORT).show();
 
-        if (usuario.getText() == null || password.getText() == null) {
-            Toast.makeText(LoginActivity.this, "Los campos njo pueden estar vacios", Toast.LENGTH_SHORT).show();
+        c.setClaveSeguridad(password.getText().toString());
+        if (api.login(c) == null) {
+            Toast.makeText(LoginActivity.this, "Los datos no coinciden con ningún cliente", Toast.LENGTH_SHORT).show();
         } else {
-            api.login(c);
+            Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
+            startActivity(intent);
         }
-
-        Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
-        startActivityForResult(intent, 0);
-
-
     }
 }
-
-
-    /*@Override
-    public void onClick(View view) {
-        usuario = (EditText) findViewById(R.id.usuario);
-        password = (EditText) findViewById(R.id.password);
-
-        MiBancoOperacional api = MiBancoOperacional.getInstance(this.getApplicationContext());
-        Cliente c  = new Cliente();
-
-        if (usuario.getText() == null || password.getText() ==null){
-            Toast.makeText(LoginActivity.this, "Los campos njo pueden estar vacios", Toast.LENGTH_SHORT).show();
-        }else {
-            api.login(c);
-        }
-
-        Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
-        startActivityForResult(intent, 0);
-
-    }*/
