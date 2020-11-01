@@ -13,6 +13,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
+        android:onClick="onClickGlobal"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"

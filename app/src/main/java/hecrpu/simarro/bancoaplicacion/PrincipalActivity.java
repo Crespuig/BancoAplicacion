@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
+
 public class PrincipalActivity extends AppCompatActivity {
 
     @Override
@@ -17,18 +19,21 @@ public class PrincipalActivity extends AppCompatActivity {
     public void onClickBtnSalir(View view) {
         Intent intent = new Intent(PrincipalActivity.this, MainActivity.class);
         startActivityForResult(intent, 0);
-
     }
 
     public void onClickCambiarClave(View view) {
         Intent intent = new Intent(PrincipalActivity.this, CambiarClave.class);
         startActivityForResult(intent, 0);
-
     }
 
     public void onClickTransferencia(View view) {
         Intent intent = new Intent(PrincipalActivity.this, TransferActivity.class);
         startActivityForResult(intent, 0);
+    }
 
+    public void onClickGlobal(View view) {
+        Intent intent = new Intent(PrincipalActivity.this, GlobalActivity.class);
+        intent.putExtra("Info", Cliente.class);
+        startActivityForResult(intent, 0);
     }
 }

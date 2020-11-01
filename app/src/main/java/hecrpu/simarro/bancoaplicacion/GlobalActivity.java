@@ -3,9 +3,12 @@ package hecrpu.simarro.bancoaplicacion;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,21 +18,15 @@ public class GlobalActivity extends AppCompatActivity implements AdapterView.OnI
     ListView lista;
     GlobalAdapter<Cuenta> adaptador;
 
-
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_global);
 
-        lista = (ListView)findViewById(R.id.listaGlobal);
-
-        //Creamos un array de Stirngs
-        String[] data = {"Elem1", "Elem2", "Elem3", "Elem4"};
         adaptador = new GlobalAdapter<>(this);
+        lista = (ListView) findViewById(R.id.listaGlobal);
         lista.setAdapter(adaptador);
-
-        lista.setOnItemClickListener(this);
 
     }
 
