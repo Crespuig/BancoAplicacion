@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
@@ -32,8 +33,12 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     public void onClickGlobal(View view) {
+        Cliente cliente = new Cliente();
+
         Intent intent = new Intent(PrincipalActivity.this, GlobalActivity.class);
-        intent.putExtra("Info", Cliente.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("cliente", cliente);
+        intent.putExtras(bundle);
         startActivityForResult(intent, 0);
     }
 }

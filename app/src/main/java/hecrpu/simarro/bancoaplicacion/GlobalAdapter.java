@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 
 public class GlobalAdapter<T> extends ArrayAdapter<T> {
@@ -39,13 +40,11 @@ public class GlobalAdapter<T> extends ArrayAdapter<T> {
         //Obteniendo las referencias de los textViews
         TextView numeroCuenta = (TextView) listItemView.findViewById(R.id.numeroCuenta);
         TextView saldoActual = (TextView) listItemView.findViewById(R.id.saldoActual);
-        ImageView comida = (ImageView) listItemView.findViewById(R.id.imagen);
 
         //Obteniendo la instancia del item posicion actual
-        Cuenta item = (hecrpu.simarro.bancoaplicacion.pojo.Cuenta) getItem(position);
+        Cliente item = (hecrpu.simarro.bancoaplicacion.pojo.Cliente) getItem(position);
 
-        numeroCuenta.setText(item.getNumeroCuenta());
-        saldoActual.setText((int) item.getSaldoActual());
+        numeroCuenta.setText((CharSequence) item.getListaCuentas());
 
         //Devolver al ListView la fila creada
         return listItemView;
