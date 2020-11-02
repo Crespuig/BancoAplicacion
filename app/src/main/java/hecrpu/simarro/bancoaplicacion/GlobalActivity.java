@@ -49,5 +49,9 @@ public class GlobalActivity extends AppCompatActivity implements AdapterView.OnI
         Cuenta cuentaActual = (Cuenta) adaptador.getItem(position);
         String msg = "- Elegiste la cuenta:\n" + cuentaActual.getNumeroCuenta() + "\n- Con saldo" + cuentaActual.getSaldoActual();
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(GlobalActivity.this, MovimientosCuentaActivity.class);
+        intent.putExtra("cuenta", cuentaActual);
+        startActivity(intent);
     }
 }
