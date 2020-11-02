@@ -1,6 +1,7 @@
 package hecrpu.simarro.bancoaplicacion;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +43,16 @@ public class GlobalAdapter<T> extends ArrayAdapter<T> {
         TextView saldoActual = (TextView) listItemView.findViewById(R.id.saldoActual);
 
         //Obteniendo la instancia del item posicion actual
-        Cliente item = (hecrpu.simarro.bancoaplicacion.pojo.Cliente) getItem(position);
+        Cuenta item = (hecrpu.simarro.bancoaplicacion.pojo.Cuenta) getItem(position);
 
-        numeroCuenta.setText((CharSequence) item.getListaCuentas());
+        numeroCuenta.setText("Cuenta: " + item.getNumeroCuenta());
+        saldoActual.setText("Saldo: " + Float.toString(item.getSaldoActual()) + "€");
+
+        if (item.getSaldoActual()<0){
+            saldoActual.setTextColor(Color.parseColor("#FFFF0009"));
+        }else{
+            saldoActual.setTextColor(Color.parseColor("#005004"));
+        }
 
         //Devolver al ListView la fila creada
         return listItemView;

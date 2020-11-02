@@ -28,11 +28,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         password = (EditText)findViewById(R.id.password);
 
 
-        api = MiBancoOperacional.getInstance(this.getApplicationContext());
+        api = MiBancoOperacional.getInstance(this);
 
         btnAcceder = (Button)findViewById(R.id.btnAcceder);
         btnAcceder.setOnClickListener(this);
 
+        usuario.setText("11111111A");
+        password.setText("1234");
 
     }
 
@@ -40,13 +42,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         Cliente c = new Cliente();
         c.setNif(usuario.getText().toString());
-        Toast.makeText(LoginActivity.this, usuario.getText().toString(), Toast.LENGTH_SHORT).show();
 
         c.setClaveSeguridad(password.getText().toString());
-        if (api.login(c) == null) {
+        c = api.login(c);
+        Toast.makeText(LoginActivity.this, "Bienvenido/a " + c.getNombre(), Toast.LENGTH_SHORT).show();
+
+        if (c == null) {
             Toast.makeText(LoginActivity.this, "Los datos no coinciden con ningún cliente", Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
+            intent.putExtra("cliente", c);
             startActivity(intent);
         }
     }

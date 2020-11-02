@@ -1,34 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listaGlobal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:id="@+id/listaGlobal">
+    tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/numeroCuenta"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imagen"
-        android:textAppearance="@android:style/TextAppearance.Holo.Large"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/saldoActual"
-        android:layout_below="@id/numeroCuenta"
-        android:layout_toRightOf="@+id/imagen"
-        android:textAppearance="@android:style/TextAppearance.Holo.Large"
-        android:textColor="@color/colorPrimaryDark"/>
-
-
-
-
-</RelativeLayout>
+</ListView>

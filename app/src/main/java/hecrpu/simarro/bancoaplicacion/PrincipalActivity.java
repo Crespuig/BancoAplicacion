@@ -6,15 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
 public class PrincipalActivity extends AppCompatActivity {
+    Cliente cliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+
     }
 
     public void onClickBtnSalir(View view) {
@@ -33,12 +38,11 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     public void onClickGlobal(View view) {
-        Cliente cliente = new Cliente();
 
         Intent intent = new Intent(PrincipalActivity.this, GlobalActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("cliente", cliente);
-        intent.putExtras(bundle);
+        //Bundle bundle = new Bundle();
+        //bundle.putSerializable("cliente", cliente);
+        intent.putExtra("cliente", cliente);
         startActivityForResult(intent, 0);
     }
 }

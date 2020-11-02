@@ -16,13 +16,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 
 public class GlobalActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    ArrayList<Cuenta> listaCuentas = new ArrayList<>();
-    TextView numeroCuenta, saldoActual;
-    GlobalAdapter<Cuenta> adaptador;
+    private ListView listaCuentas;
+    private MiBancoOperacional mbo;
+    private GlobalAdapter<Cuenta> adaptador;
+    private Cliente cliente;
 
 
     @SuppressLint("WrongViewCast")
@@ -31,18 +33,14 @@ public class GlobalActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_global);
 
-        /*numeroCuenta = (TextView) findViewById(R.id.numeroCuenta);
-        saldoActual = (TextView) findViewById(R.id.saldoActual);*/
+        mbo = MiBancoOperacional.getInstance(this);
 
-        Bundle objetoEnviado = getIntent().getExtras();
-        Cliente cliente = null;
+        cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+        listaCuentas = (ListView) findViewById(R.id.listaGlobal);
 
-        if (objetoEnviado != null){
-            cliente = (Cliente) objetoEnviado.getSerializable("cliente");
-            cliente.setListaCuentas(listaCuentas);
-        } else{
-            Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show();
-        }
+        adaptador = new GlobalAdapter<>(this, mbo.getCuentas(cliente));
+        listaCuentas.setAdapter(adaptador);
+        listaCuentas.setOnItemClickListener(this);
 
     }
 
