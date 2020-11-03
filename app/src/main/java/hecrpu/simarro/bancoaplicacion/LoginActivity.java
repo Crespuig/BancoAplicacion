@@ -24,8 +24,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usuario = (EditText)findViewById(R.id.usuario);
-        password = (EditText)findViewById(R.id.password);
+        usuario = (EditText)findViewById(R.id.passworAnterior);
+        password = (EditText)findViewById(R.id.passwordNuevo);
 
 
         api = MiBancoOperacional.getInstance(this);

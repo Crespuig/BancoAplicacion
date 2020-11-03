@@ -30,6 +30,8 @@ public class PrincipalActivity extends AppCompatActivity {
     public void onClickCambiarClave(View view) {
         Intent intent = new Intent(PrincipalActivity.this, CambiarClave.class);
         startActivityForResult(intent, 0);
+        intent.putExtra("cliente", cliente);
+        startActivityForResult(intent, 0);
     }
 
     public void onClickTransferencia(View view) {

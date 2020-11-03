@@ -9,7 +9,7 @@
     android:padding="250dp">
 
     <EditText
-        android:id="@+id/usuario"
+        android:id="@+id/passworAnterior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -17,7 +17,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordNuevo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
