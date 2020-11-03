@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnAcceder = (Button)findViewById(R.id.btnAcceder);
         btnAcceder.setOnClickListener(this);
 
-        usuario.setText("11111111A");
-        password.setText("1234");
+        /*usuario.setText("11111111A");
+        password.setText("1234");*/
 
     }
 

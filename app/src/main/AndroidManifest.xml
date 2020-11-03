@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MovimientosCuentaActivity"></activity>
-        <activity android:name=".GlobalActivity" />
+        <activity
+            android:name=".GlobalActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".TransferActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -20,7 +22,9 @@
         <activity
             android:name=".PrincipalActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
