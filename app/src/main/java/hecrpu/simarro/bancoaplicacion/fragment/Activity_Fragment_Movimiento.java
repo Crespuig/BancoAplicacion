@@ -19,44 +19,31 @@ import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 import hecrpu.simarro.bancoaplicacion.pojo.Movimiento;
 
-public class Activity_Fragment_Movimiento extends Fragment implements AdapterView.OnItemClickListener {
-    Context context;
+public class Activity_Fragment_Movimiento extends Fragment{
+    Activity_Fragment_Movimiento context = this;
 
     private ListView listaMovimientos;
     private MiBancoOperacional mbo;
     private MovimientosCuentaAdapter<Movimiento> adaptador;
     private Cuenta cuenta;
 
+    public Activity_Fragment_Movimiento(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_fragment_movimientos_cuenta, container, false);
-
+        View view =  inflater.inflate(R.layout.activity_fragment_movimientos_cuenta, container, false);
+        listaMovimientos = (ListView) view.findViewById(R.id.listaMovimientos);
+        mostrarDetalle(cuenta);
+        return view;
     }
 
-    public static Activity_Fragment_Movimiento newInstance(Cuenta cuenta){
-        Activity_Fragment_Movimiento fragment = new Activity_Fragment_Movimiento();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("cuenta", cuenta);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-    @SuppressLint("WrongViewCast")
     public void mostrarDetalle(Cuenta c){
-        mbo = MiBancoOperacional.getInstance(context);
-
-        if (getArguments() != null){
-            cuenta = (Cuenta) getArguments().getSerializable("cuenta");
-        }
-        listaMovimientos = (ListView) getView().findViewById(R.id.listaMovimientos);
+        mbo = MiBancoOperacional.getInstance(context.getActivity());
 
         adaptador = new MovimientosCuentaAdapter<>(this, mbo.getMovimientos(cuenta));
         listaMovimientos.setAdapter(adaptador);
-        listaMovimientos.setOnItemClickListener(this);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
 }

@@ -16,7 +16,7 @@ import hecrpu.simarro.bancoaplicacion.fragment.GlobalListener;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 
-public class GlobalActivity extends AppCompatActivity implements /*AdapterView.OnItemClickListener,*/ GlobalListener {
+public class GlobalActivity extends AppCompatActivity /*implements AdapterView.OnItemClickListener, GlobalListener*/ {
     private ListView listaCuentas;
     private MiBancoOperacional mbo;
     private GlobalAdapter<Cuenta> adaptador;
@@ -30,7 +30,7 @@ public class GlobalActivity extends AppCompatActivity implements /*AdapterView.O
         setContentView(R.layout.activity_global);
 
         Activity_Fragment_Global frgListaGlobal = (Activity_Fragment_Global) getSupportFragmentManager().findFragmentById(R.id.frgListaGlobal);
-        frgListaGlobal.setGlobalListener(this);
+        //frgListaGlobal.setGlobalListener(this);
 
         /*mbo = MiBancoOperacional.getInstance(this);
 
@@ -54,7 +54,7 @@ public class GlobalActivity extends AppCompatActivity implements /*AdapterView.O
         startActivity(intent);
     }*/
 
-    @Override
+    /*@Override
     public void onCuentaSeleccionada(Cuenta c) {
         boolean hayDetalle = (getSupportFragmentManager().findFragmentById(R.id.frgMovimiemtoCuenta) != null);
 
@@ -67,5 +67,5 @@ public class GlobalActivity extends AppCompatActivity implements /*AdapterView.O
             i.putExtras(bundle);
             startActivity(i);
         }
-    }
+    }*/
 }
