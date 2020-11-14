@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
 public class PrincipalActivity extends AppCompatActivity {

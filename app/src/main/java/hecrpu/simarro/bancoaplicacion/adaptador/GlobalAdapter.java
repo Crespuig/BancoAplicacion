@@ -1,25 +1,32 @@
-package hecrpu.simarro.bancoaplicacion;
+package hecrpu.simarro.bancoaplicacion.adaptador;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
+import hecrpu.simarro.bancoaplicacion.R;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 
 public class GlobalAdapter<T> extends ArrayAdapter<T> {
-    public GlobalAdapter(@NonNull Context context, List<T> objects) {
-        super(context, 0, objects);
+    Activity context;
+    ArrayList<Cuenta> cuentas;
+
+    public GlobalAdapter(@NonNull Fragment context, List<T> cuentas) {
+        super(context.getActivity(), R.layout.activity_global, cuentas);
+        this.context = context.getActivity();
+        this.cuentas = (ArrayList<Cuenta>) cuentas;
     }
 
     @NonNull
@@ -34,7 +41,7 @@ public class GlobalAdapter<T> extends ArrayAdapter<T> {
         //Comprobando si el View existe
         if (convertView == null) {
             //Si no existe, entonces inflarlo con two_line_list_item
-            listItemView = inflater.inflate(R.layout.image_list_item, parent, false);
+            listItemView = inflater.inflate(R.layout.image_list_global, parent, false);
             //listItemView = inflater.inflate(android.R.layout.two_line_list_item, parent, false);
         }
 
