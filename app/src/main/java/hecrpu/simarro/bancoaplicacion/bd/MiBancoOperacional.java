@@ -2,6 +2,7 @@ package hecrpu.simarro.bancoaplicacion.bd;
 
 import android.content.Context;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
@@ -9,7 +10,7 @@ import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 import hecrpu.simarro.bancoaplicacion.pojo.Movimiento;
 
 
-public class MiBancoOperacional {
+public class MiBancoOperacional implements Serializable {
 
 
     private MiBD miBD;

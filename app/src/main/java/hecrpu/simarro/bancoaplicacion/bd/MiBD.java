@@ -5,12 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.Serializable;
+
 import hecrpu.simarro.bancoaplicacion.dao.ClienteDAO;
 import hecrpu.simarro.bancoaplicacion.dao.CuentaDAO;
 import hecrpu.simarro.bancoaplicacion.dao.MovimientoDAO;
 
 
-public class MiBD extends SQLiteOpenHelper {
+public class MiBD extends SQLiteOpenHelper implements Serializable {
 
     private static SQLiteDatabase db;
     //nombre de la base de datos

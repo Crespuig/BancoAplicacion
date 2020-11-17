@@ -11,18 +11,16 @@
         class="hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Global"
         android:layout_height="match_parent"
         android:layout_width="0px"
+        android:layout_weight="30"
         tools:ignore="Instantiatable,Suspicious0dp" />
 
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frgMovimientoCuenta"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="70"/>
+
+
 </LinearLayout>
-
-<!--
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/listaGlobal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".MainActivity">
-
-</ListView>
--->
