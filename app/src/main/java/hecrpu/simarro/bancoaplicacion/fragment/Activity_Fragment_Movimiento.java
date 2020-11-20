@@ -11,10 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import hecrpu.simarro.bancoaplicacion.R;
 import hecrpu.simarro.bancoaplicacion.adaptador.MovimientosCuentaAdapter;
 import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
+import hecrpu.simarro.bancoaplicacion.dialogos.DialogoListaMovimientos;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 import hecrpu.simarro.bancoaplicacion.pojo.Movimiento;
@@ -44,6 +46,16 @@ public class Activity_Fragment_Movimiento extends Fragment{
 
         adaptador = new MovimientosCuentaAdapter<>(this, mbo.getMovimientos(cuenta));
         listaMovimientos.setAdapter(adaptador);
+
+        listaMovimientos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                FragmentManager fragmentManager = getFragmentManager();
+                DialogoListaMovimientos dialogoListaMovimientos = new DialogoListaMovimientos();
+                dialogoListaMovimientos.show(fragmentManager, "tagListaMovimientos");
+            }
+        });
     }
+
 
 }
