@@ -52,6 +52,7 @@ public class Activity_Fragment_Movimiento extends Fragment{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 FragmentManager fragmentManager = getFragmentManager();
                 DialogoListaMovimientos dialogoListaMovimientos = new DialogoListaMovimientos();
+                dialogoListaMovimientos.info = adapterView.getItemAtPosition(i).toString();
                 dialogoListaMovimientos.show(fragmentManager, "tagListaMovimientos");
             }
         });
