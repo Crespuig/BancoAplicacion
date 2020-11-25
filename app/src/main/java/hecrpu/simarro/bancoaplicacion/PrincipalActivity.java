@@ -1,6 +1,8 @@
 package hecrpu.simarro.bancoaplicacion;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -9,7 +11,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Global;
@@ -29,6 +34,10 @@ public class PrincipalActivity extends AppCompatActivity {
 
         cliente = (Cliente) getIntent().getSerializableExtra("cliente");
         fragment_global = new Activity_Fragment_Global(cliente);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
 
@@ -67,5 +76,29 @@ public class PrincipalActivity extends AppCompatActivity {
                 .replace(id, fragment)
                 //.addToBackStack(fragment.getTag())
                 .commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_global:
+                Toast.makeText(getApplicationContext(), "Nuevo", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_ingresos:
+                Toast.makeText(getApplicationContext(), "Buscar", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_transferencias:
+                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

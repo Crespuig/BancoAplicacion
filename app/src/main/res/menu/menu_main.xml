@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_global"
+        android:title="@string/app_global"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_ingresos"
+        android:title="@string/app_ingresos"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_transferencias"
+        android:title="@string/app_transferencias"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_cambiarClave"
+        android:title="@string/app_cambiarClave"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_promociones"
+        android:title="@string/app_promociones"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_cajerosCercanos"
+        android:title="@string/app_cajerosCercanos"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+</menu>

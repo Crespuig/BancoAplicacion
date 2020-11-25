@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BancoAplicacion</string>
+    <string name="app_global">Posicion global</string>
+    <string name="app_ingresos">Ingresos</string>
+    <string name="app_transferencias">Transferencias</string>
+    <string name="app_cambiarClave">Cambiar clave</string>
+    <string name="app_promociones">Promociones</string>
+    <string name="app_cajerosCercanos">Cageros cercanos</string>
+    <string name="app_cofiguracion">Configuracion</string>
+    <string name="titulo">Título</string>
+    <string name="subtitulo">Subtítulo</string>
 </resources>
