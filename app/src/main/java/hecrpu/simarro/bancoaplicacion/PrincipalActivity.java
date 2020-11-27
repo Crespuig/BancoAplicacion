@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
@@ -38,6 +39,9 @@ public class PrincipalActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        TextView textView = (TextView) findViewById(R.id.txtSubtitulo);
+        textView.setText(cliente.getNombre());
 
     }
 
@@ -88,13 +92,21 @@ public class PrincipalActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_global:
-                Toast.makeText(getApplicationContext(), "Nuevo", Toast.LENGTH_SHORT).show();
+                cambiaFragment(R.id.fragment, fragment_global);
+                constraintLayout.setVisibility(View.GONE);
                 return true;
             case R.id.action_ingresos:
-                Toast.makeText(getApplicationContext(), "Buscar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ingresos", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_transferencias:
-                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PrincipalActivity.this, TransferActivity.class);
+                startActivityForResult(intent, 0);
+                return true;
+            case R.id.action_cambiarClave:
+                Intent intent2 = new Intent(PrincipalActivity.this, CambiarClave.class);
+                startActivityForResult(intent2, 0);
+                intent2.putExtra("cliente", cliente);
+                startActivityForResult(intent2, 0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

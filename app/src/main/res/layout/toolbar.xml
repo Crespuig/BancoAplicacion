@@ -17,18 +17,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="16dp">
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/txtTitulo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
 
         <TextView
             android:id="@+id/txtSubtitulo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/subtitulo"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"/>

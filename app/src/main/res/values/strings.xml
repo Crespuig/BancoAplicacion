@@ -7,6 +7,7 @@
     <string name="app_promociones">Promociones</string>
     <string name="app_cajerosCercanos">Cageros cercanos</string>
     <string name="app_cofiguracion">Configuracion</string>
-    <string name="titulo">Título</string>
+    <string name="titulo">Vankio</string>
     <string name="subtitulo">Subtítulo</string>
+
 </resources>
