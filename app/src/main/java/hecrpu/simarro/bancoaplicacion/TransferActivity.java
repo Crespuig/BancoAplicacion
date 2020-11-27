@@ -2,6 +2,7 @@ package hecrpu.simarro.bancoaplicacion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,11 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
+import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
+import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
+import hecrpu.simarro.bancoaplicacion.pojo.Movimiento;
+
 public class TransferActivity extends AppCompatActivity implements View.OnClickListener {
 
     private GridView gridView;
@@ -35,31 +41,39 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     private String cuentaOrigen = "";
     private String cuentaDestino = "";
     private float ingreso = 0;
+    private Cliente c;
+    private Movimiento movimiento;
+    private MiBancoOperacional miBancoOperacional;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer);
+        c = (Cliente) getIntent().getSerializableExtra("cliente");
 
-        ArrayAdapter<Cuenta> adaptador = new GridAdapter<>(this, DatosCuenta.CUENTA, R.layout.item_grid);
+        miBancoOperacional = MiBancoOperacional.getInstance(this.getApplicationContext());
+
+        ArrayAdapter<hecrpu.simarro.bancoaplicacion.pojo.Cuenta> adaptador = new GridAdapter<>(this, c.getListaCuentas(), R.layout.item_grid);
         gridView = (GridView) findViewById(R.id.gridTransfer);
         gridView.setAdapter(adaptador);
         spinnerCuenta = (Spinner) findViewById(R.id.spinnerTransfer);
-        adaptador = new GridAdapter<Cuenta>(this, DatosCuenta.CUENTA, R.layout.item_spinner);
+        adaptador = new GridAdapter<hecrpu.simarro.bancoaplicacion.pojo.Cuenta>(this, c.getListaCuentas(), R.layout.item_spinner);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCuenta.setAdapter(adaptador);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cuentaOrigen = ((Cuenta)parent.getItemAtPosition(position)).getNumCuenta();
+                cuentaOrigen = ((Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
+                TextView textView = (TextView) findViewById(R.id.transferTextView4);
+                textView.setText("Cuenta seleccionada: " + cuentaOrigen);
             }
         });
 
         spinnerCuenta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                cuentaDestino = ((Cuenta)parent.getItemAtPosition(position)).getNumCuenta();
+                cuentaDestino = ((hecrpu.simarro.bancoaplicacion.pojo.Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
             }
 
             @Override
@@ -68,7 +82,7 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioGrTransfer);
+        /*RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioGrTransfer);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -86,7 +100,7 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        findViewById(R.id.transferRadioButton1).setOnClickListener(this);
+        findViewById(R.id.transferRadioButton1).setOnClickListener(this);*/
 
         //Spinner divisa
         ArrayList<String> divisaArray = new ArrayList<>();
@@ -97,9 +111,9 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
         spinnerDivisa.setAdapter(divisaAdapter);
 
         //Elementos cuenta ajena
-        findViewById(R.id.transferRadioButton2).setOnClickListener(this);
+        /*findViewById(R.id.transferRadioButton2).setOnClickListener(this);
         importeTransfer = (EditText) findViewById(R.id.importeTransfer);
-        cuentaDestinoTransfer = (EditText) findViewById(R.id.cuentaDestinoTransfer);
+        cuentaDestinoTransfer = (EditText) findViewById(R.id.cuentaDestinoTransfer);*/
 
         //botones
         findViewById(R.id.checkBoxTransfer).setOnClickListener(this);
@@ -114,11 +128,8 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.transferButtonOk:
-                final EditText saldo = (EditText) findViewById(R.id.importeTransfer);
-                ingreso = Float.parseFloat(saldo.getText().toString());
-                Toast.makeText(getApplicationContext(),"Origen: " + cuentaOrigen + "\nDestino: " + cuentaDestinoTransfer + "\nIngresado: " + ingreso, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(TransferActivity.this, PrincipalActivity.class);
-                startActivityForResult(intent, 0);
+                movimiento = new Movimiento();
+                miBancoOperacional.transferencia(movimiento);
                 break;
             case R.id.transferButtonCancelar:
                 importeTransfer.setText("");

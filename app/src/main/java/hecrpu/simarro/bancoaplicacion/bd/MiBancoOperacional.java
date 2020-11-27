@@ -84,6 +84,19 @@ public class MiBancoOperacional implements Serializable {
          - Si la operacion es correcta se devuelve un 0
     */
     public int transferencia(Movimiento movimientoTransferencia){
+        if (movimientoTransferencia.getCuentaOrigen().getSaldoActual() >= movimientoTransferencia.getImporte()){
+            float importe = movimientoTransferencia.getImporte();
+            float saldoCuentaOrigen = movimientoTransferencia.getCuentaOrigen().getSaldoActual();
+            float resta = saldoCuentaOrigen - importe;
+            float saldoCuentaDestino = movimientoTransferencia.getCuentaDestino().getSaldoActual();
+            movimientoTransferencia.getCuentaOrigen().setSaldoActual(resta);
+            float suma = saldoCuentaDestino + resta;
+            movimientoTransferencia.getCuentaDestino().setSaldoActual(suma);
+            miBD.insercionMovimiento(movimientoTransferencia);
+            miBD.actualizarSaldo(movimientoTransferencia.getCuentaOrigen());
+            miBD.actualizarSaldo(movimientoTransferencia.getCuentaDestino());
+        }
+
         return 0;
     }
 

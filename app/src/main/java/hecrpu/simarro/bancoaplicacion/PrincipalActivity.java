@@ -60,6 +60,8 @@ public class PrincipalActivity extends AppCompatActivity {
     public void onClickTransferencia(View view) {
         Intent intent = new Intent(PrincipalActivity.this, TransferActivity.class);
         startActivityForResult(intent, 0);
+        intent.putExtra("cliente", cliente);
+        startActivityForResult(intent, 0);
     }
 
     public void onClickGlobal(View view) {

@@ -18,6 +18,8 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
+
 public class GridAdapter<T> extends ArrayAdapter<T> {
 
     private int layout;
@@ -36,15 +38,13 @@ public class GridAdapter<T> extends ArrayAdapter<T> {
             gridView = inflater.inflate(layout, parent, false);
         }
 
-        TextView nom = (TextView) gridView.findViewById(R.id.txtNombre);
         TextView numCuenta = (TextView) gridView.findViewById(R.id.txtNumCuenta);
         TextView saldo = (TextView) gridView.findViewById(R.id.txtSaldo);
 
         Cuenta item = (Cuenta) getItem(position);
 
-        nom.setText(item.getNombre());
-        numCuenta.setText(item.getNumCuenta());
-        saldo.setText(String.valueOf(item.getSaldo()) + "€");
+        numCuenta.setText(item.getNumeroCuenta());
+        saldo.setText(String.valueOf(item.getSaldoActual()) + "€");
 
         return gridView;
     }

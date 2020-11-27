@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         c.setClaveSeguridad(password.getText().toString());
         c = api.login(c);
+        c.setListaCuentas(api.getCuentas(c));
         Toast.makeText(LoginActivity.this, "Bienvenido/a " + c.getNombre(), Toast.LENGTH_SHORT).show();
 
         if (c == null) {
