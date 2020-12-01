@@ -102,6 +102,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 return true;
             case R.id.action_transferencias:
                 Intent intent = new Intent(PrincipalActivity.this, TransferActivity.class);
+                intent.putExtra("cliente", cliente);
                 startActivityForResult(intent, 0);
                 return true;
             case R.id.action_cambiarClave:

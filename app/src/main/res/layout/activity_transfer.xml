@@ -21,21 +21,19 @@
 
     <EditText
         android:id="@+id/importeTransfer"
-        android:layout_width="307dp"
-        android:layout_height="43dp"
+        android:layout_width="197dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Introduce el importe"
-        android:visibility="gone"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cuentaDestinoTransfer"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTransfer"
+        app:layout_constraintVertical_bias="0.549" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -113,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="68dp"
         android:text="Cuenta Destino:"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"

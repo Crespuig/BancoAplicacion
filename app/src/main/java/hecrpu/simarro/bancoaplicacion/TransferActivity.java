@@ -21,6 +21,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
@@ -38,8 +39,8 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     private CheckBox checkBoxTransfer;
     private Button botonOk;
     private Button botonCancelar;
-    private String cuentaOrigen = "";
-    private String cuentaDestino = "";
+    private Cuenta cuentaOrigen;
+    private Cuenta cuentaDestino;
     private float ingreso = 0;
     private Cliente c;
     private Movimiento movimiento;
@@ -64,16 +65,16 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cuentaOrigen = ((Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
+                cuentaOrigen = (Cuenta)parent.getItemAtPosition(position);
                 TextView textView = (TextView) findViewById(R.id.transferTextView4);
-                textView.setText("Cuenta seleccionada: " + cuentaOrigen);
+                textView.setText("Cuenta seleccionada: " + cuentaOrigen.getNumeroCuenta());
             }
         });
 
         spinnerCuenta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                cuentaDestino = ((hecrpu.simarro.bancoaplicacion.pojo.Cuenta)parent.getItemAtPosition(position)).getNumeroCuenta();
+                cuentaDestino = (hecrpu.simarro.bancoaplicacion.pojo.Cuenta)parent.getItemAtPosition(position);
             }
 
             @Override
@@ -128,8 +129,26 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.transferButtonOk:
-                movimiento = new Movimiento();
-                miBancoOperacional.transferencia(movimiento);
+                importeTransfer = (EditText) findViewById(R.id.importeTransfer);
+                float importe = Float.parseFloat(importeTransfer.getText().toString());
+
+                if (cuentaOrigen.getNumeroCuenta() != cuentaDestino.getNumeroCuenta()){
+                    movimiento = new Movimiento(2, new Date(), "Transferencia", importe, cuentaOrigen, cuentaDestino);
+                    if (cuentaOrigen.getSaldoActual() >= importe){
+                        miBancoOperacional.transferencia(movimiento);
+                        Toast.makeText(getApplicationContext(), "Transferencia realizada", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(TransferActivity.this, PrincipalActivity.class);
+                        intent.putExtra("cliente", c);
+                        startActivityForResult(intent, 0);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Saldo insuficiente", Toast.LENGTH_LONG).show();
+                    }
+
+                }else {
+                    Toast.makeText(getApplicationContext(), "Se deben seleccionar diferentes cuentas", Toast.LENGTH_LONG).show();
+                }
+
+
                 break;
             case R.id.transferButtonCancelar:
                 importeTransfer.setText("");

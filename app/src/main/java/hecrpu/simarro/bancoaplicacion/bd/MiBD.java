@@ -109,7 +109,7 @@ public class MiBD extends SQLiteOpenHelper implements Serializable {
                 m.getTipo()+", "+m.getFechaOperacion().getTime()+", '"+m.getDescripcion()+"', "+m.getImporte()+","+m.getCuentaOrigen().getId()+", "+m.getCuentaDestino().getId()+");");
     }
     public void actualizarSaldo(Cuenta c){
-        db.execSQL("UPDATE cuentas SET saldoactual= "+c.getSaldoActual()+" WHERE banco='"+c.getBanco()+"' AND sucursal='"+c.getSucursal()+"' && dc='"+c.getDc()+"' && numerocuenta='"
+        db.execSQL("UPDATE cuentas SET saldoactual= "+c.getSaldoActual()+" WHERE banco='"+c.getBanco()+"' AND sucursal='"+c.getSucursal()+"' AND dc='"+c.getDc()+"' AND numerocuenta='"
                 +c.getNumeroCuenta()+"';");
     }
     public boolean existeCuenta(String banco,String sucursal,String dc,String numCuenta){
