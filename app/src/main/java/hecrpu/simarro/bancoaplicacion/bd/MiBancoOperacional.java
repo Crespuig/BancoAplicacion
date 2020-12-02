@@ -83,19 +83,20 @@ public class MiBancoOperacional implements Serializable {
          - El movimiento que viene como parametro en el metodo, que viene en la variable movimientoTransferencia ha de ser de tipo 0.
          - Si la operacion es correcta se devuelve un 0
     */
-    public int transferencia(Movimiento movimientoTransferencia){
-        if (movimientoTransferencia.getCuentaOrigen().getSaldoActual() >= movimientoTransferencia.getImporte()){
-            float importe = movimientoTransferencia.getImporte();
-            float saldoCuentaOrigen = movimientoTransferencia.getCuentaOrigen().getSaldoActual();
+    public int transferencia(Movimiento movimientoCuentaOrigen, Movimiento movimientoCuentaDestino){
+        if (movimientoCuentaOrigen.getCuentaOrigen().getSaldoActual() >= movimientoCuentaOrigen.getImporte()){
+            float importe = movimientoCuentaOrigen.getImporte();
+            float saldoCuentaOrigen = movimientoCuentaOrigen.getCuentaOrigen().getSaldoActual();
             float resta = saldoCuentaOrigen - importe;
-            float saldoCuentaDestino = movimientoTransferencia.getCuentaDestino().getSaldoActual();
-            movimientoTransferencia.getCuentaOrigen().setSaldoActual(resta);
+            float saldoCuentaDestino = movimientoCuentaDestino.getCuentaOrigen().getSaldoActual();
+            movimientoCuentaOrigen.getCuentaOrigen().setSaldoActual(resta);
             float suma = saldoCuentaDestino + resta;
-            movimientoTransferencia.getCuentaDestino().setSaldoActual(suma);
-            movimientoTransferencia.setImporte(movimientoTransferencia.getImporte() * (-1));
-            miBD.insercionMovimiento(movimientoTransferencia);
-            miBD.actualizarSaldo(movimientoTransferencia.getCuentaOrigen());
-            miBD.actualizarSaldo(movimientoTransferencia.getCuentaDestino());
+            movimientoCuentaDestino.getCuentaOrigen().setSaldoActual(suma);
+            movimientoCuentaOrigen.setImporte(movimientoCuentaOrigen.getImporte() * (-1));
+            miBD.actualizarSaldo(movimientoCuentaOrigen.getCuentaOrigen());
+            miBD.actualizarSaldo(movimientoCuentaDestino.getCuentaOrigen());
+            miBD.insercionMovimiento(movimientoCuentaOrigen);
+            miBD.insercionMovimiento(movimientoCuentaDestino);
         }
 
         return 0;

@@ -43,7 +43,8 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
     private Cuenta cuentaDestino;
     private float ingreso = 0;
     private Cliente c;
-    private Movimiento movimiento;
+    private Movimiento movimientoOrigen;
+    private Movimiento movimientoDestino;
     private MiBancoOperacional miBancoOperacional;
 
     @Override
@@ -133,9 +134,10 @@ public class TransferActivity extends AppCompatActivity implements View.OnClickL
                 float importe = Float.parseFloat(importeTransfer.getText().toString());
 
                 if (cuentaOrigen.getNumeroCuenta() != cuentaDestino.getNumeroCuenta()){
-                    movimiento = new Movimiento(2, new Date(), "Transferencia", importe, cuentaOrigen, cuentaDestino);
+                    movimientoOrigen = new Movimiento(0, new Date(), "Transferencia", importe, cuentaOrigen, cuentaDestino);
+                    movimientoDestino = new Movimiento(1, new Date(), "Transferencia", importe,cuentaDestino, cuentaOrigen);
                     if (cuentaOrigen.getSaldoActual() >= importe){
-                        miBancoOperacional.transferencia(movimiento);
+                        miBancoOperacional.transferencia(movimientoOrigen, movimientoDestino);
                         Toast.makeText(getApplicationContext(), "Transferencia realizada", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(TransferActivity.this, PrincipalActivity.class);
                         intent.putExtra("cliente", c);
