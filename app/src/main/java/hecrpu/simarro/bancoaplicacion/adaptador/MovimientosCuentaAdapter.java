@@ -23,7 +23,7 @@ public class MovimientosCuentaAdapter<T> extends ArrayAdapter<T> {
     ArrayList<Movimiento> movimientos;
 
     public MovimientosCuentaAdapter(@NonNull Fragment context, ArrayList<Movimiento> movimientos) {
-        super(context.getActivity(), R.layout.activity_movimientos_cuenta, (List<T>) movimientos);
+        super(context.getActivity(), R.layout.fragment_all, (List<T>) movimientos);
         this.context = context.getActivity();
         this.movimientos = movimientos;
     }
