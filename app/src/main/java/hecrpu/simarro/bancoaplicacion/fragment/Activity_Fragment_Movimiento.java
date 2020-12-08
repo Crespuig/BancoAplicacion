@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import hecrpu.simarro.bancoaplicacion.R;
 import hecrpu.simarro.bancoaplicacion.adaptador.MovimientosCuentaAdapter;
 import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
+import hecrpu.simarro.bancoaplicacion.dao.MovimientoDAO;
 import hecrpu.simarro.bancoaplicacion.dialogos.DialogoListaMovimientos;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
@@ -31,6 +32,7 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
     Activity_Fragment_Movimiento context = this;
 
     private BottomNavigationView navigationView;
+    private MovimientoDAO movimientoDAO;
     private ListView listaMovimientos;
     private MiBancoOperacional mbo;
     private MovimientosCuentaAdapter<Movimiento> adaptador;
@@ -63,6 +65,7 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
         mbo = MiBancoOperacional.getInstance(context.getActivity());
 
         adaptador = new MovimientosCuentaAdapter<>(this, mbo.getMovimientos(cuenta));
+
         listaMovimientos.setAdapter(adaptador);
 
         listaMovimientos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,6 +86,7 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
         switch (item.getItemId()){
             case R.id.navigationAll:
                 f = new AllFragment();
+
                 break;
             case R.id.navigationZero:
                 f = new ZeroFragment();

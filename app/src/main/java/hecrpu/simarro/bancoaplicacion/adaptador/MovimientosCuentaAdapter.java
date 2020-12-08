@@ -44,6 +44,8 @@ public class MovimientosCuentaAdapter<T> extends ArrayAdapter<T> {
             //listItemView = inflater.inflate(android.R.layout.two_line_list_item, parent, false);
         }
 
+
+
         //Obteniendo las referencias de los textViews
         TextView id = (TextView) listItemView.findViewById(R.id.id);
         TextView tipo = (TextView) listItemView.findViewById(R.id.tipo);
@@ -56,13 +58,35 @@ public class MovimientosCuentaAdapter<T> extends ArrayAdapter<T> {
         //Obteniendo la instancia del item posicion actual
         Movimiento item = (hecrpu.simarro.bancoaplicacion.pojo.Movimiento) getItem(position);
 
-        id.setText("ID: " + item.getId());
-        tipo.setText("Tipo: " + item.getTipo());
-        fechaOperacion.setText((item.getFechaOperacion()).toString());
-        descripcion.setText(item.getDescripcion());
-        importe.setText(Float.toString(item.getImporte()) + "€");
+        for (int i = 0; i < movimientos.size(); i++){
+            if (item.getTipo() == 0){
+                id.setText("ID: " + item.getId());
+                tipo.setText("Tipo: " + item.getTipo());
+                fechaOperacion.setText((item.getFechaOperacion()).toString());
+                descripcion.setText(item.getDescripcion());
+                importe.setText(Float.toString(item.getImporte()) + "€");
+            }
+            if (item.getTipo() == 1){
+                id.setText("ID: " + item.getId());
+                tipo.setText("Tipo: " + item.getTipo());
+                fechaOperacion.setText((item.getFechaOperacion()).toString());
+                descripcion.setText(item.getDescripcion());
+                importe.setText(Float.toString(item.getImporte()) + "€");
+            }
+            if (item.getTipo() == 2){
+                id.setText("ID: " + item.getId());
+                tipo.setText("Tipo: " + item.getTipo());
+                fechaOperacion.setText((item.getFechaOperacion()).toString());
+                descripcion.setText(item.getDescripcion());
+                importe.setText(Float.toString(item.getImporte()) + "€");
+            }
+        }
+
+
         /*cuentaOrigen.setText(item.getCuentaOrigen().getNumeroCuenta().toString());
-        cuentaDestino.setText(item.getCuentaDestino().toString());*/
+          cuentaDestino.setText(item.getCuentaDestino().toString());*/
+
+
 
         //Devolver al ListView la fila creada
         return listItemView;
