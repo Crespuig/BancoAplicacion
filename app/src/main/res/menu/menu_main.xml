@@ -31,4 +31,9 @@
         android:title="@string/app_cajerosCercanos"
         android:orderInCategory="100"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_preferencias"
+        android:title="@string/app_preferencias"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
 </menu>

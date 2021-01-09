@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -37,6 +38,10 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
     private MiBancoOperacional mbo;
     private MovimientosCuentaAdapter<Movimiento> adaptador;
     private Cuenta cuenta;
+    AllFragment allFragment;
+    ZeroFragment zeroFragment;
+    OneFragment oneFragment;
+    TwoFragment twoFragment;
 
     public Activity_Fragment_Movimiento(Cuenta cuenta) {
         this.cuenta = cuenta;
@@ -48,6 +53,10 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
         listaMovimientos = (ListView) view.findViewById(R.id.listaMovimientos);
         mostrarDetalle(cuenta);
 
+        allFragment = new AllFragment();
+        zeroFragment = new ZeroFragment();
+        oneFragment = new OneFragment();
+        twoFragment = new TwoFragment();
 
         navigationView = (BottomNavigationView) view.findViewById(R.id.menuNavigation);
         navigationView.setOnNavigationItemSelectedListener(context);
@@ -55,7 +64,7 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
         getActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contenedor, new AllFragment());
+                .add(R.id.contenedor, allFragment).commit();
 
         return view;
 
@@ -82,27 +91,26 @@ public class Activity_Fragment_Movimiento extends Fragment implements BottomNavi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment f = null;
+        FragmentTransaction transaction = null;
         switch (item.getItemId()){
             case R.id.navigationAll:
-                f = new AllFragment();
-
+                transaction.replace(R.id.contenedor, allFragment);
                 break;
             case R.id.navigationZero:
-                f = new ZeroFragment();
+                transaction.replace(R.id.contenedor, zeroFragment);
                 break;
             case R.id.navigationOne:
-                f = new OneFragment();
+                transaction.replace(R.id.contenedor, oneFragment);
                 break;
             case R.id.navigationTwo:
-                f = new TwoFragment();
+                transaction.replace(R.id.contenedor, twoFragment);
                 break;
         }
-        if (f != null){
+        if (transaction != null){
             getActivity()
                     .getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.contenedor, f)
+                    .replace(R.id.contenedor, allFragment)
                     .commit();
         }
 

@@ -5,22 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.TwoFragment"
-    android:id="@+id/tipo2">
+    android:id="@+id/tipo2"
+    android:background="@color/colorPrimaryDark">
 
     <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/listaMovimientos"
-        android:layout_width="wrap_content"
-        android:layout_height="678dp" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/menuNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:menu="@menu/menu_navigation"
-        android:background="@color/colorPrimary"
-        app:itemTextColor="#000000"
-        app:itemIconTint="#000000"/>
 
 </FrameLayout>

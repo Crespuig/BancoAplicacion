@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.OneFragment"
-    android:id="@+id/tipo1">
+    android:id="@+id/tipo1"
+    android:background="@color/design_default_color_primary_variant">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,16 +14,5 @@
         android:text="UNO" />
     <!-- TODO: Update blank fragment layout -->
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/menuNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:menu="@menu/menu_navigation"
-        android:background="@color/colorPrimary"
-        app:itemTextColor="#000000"
-        app:itemIconTint="#000000"
-        />
 
 </FrameLayout>

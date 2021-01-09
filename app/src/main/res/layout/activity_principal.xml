@@ -5,21 +5,22 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include android:id="@+id/appbar"
-        layout="@layout/toolbar"/>
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/toolbar" />
 
-<FrameLayout
-    android:id="@+id/fragment"
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     />
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_weight="1"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/principalLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         tools:context=".PrincipalActivity">
 
         <ImageButton

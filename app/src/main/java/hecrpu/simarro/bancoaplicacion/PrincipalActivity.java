@@ -10,6 +10,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
+import hecrpu.simarro.bancoaplicacion.activity.PreferenceActivity;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Global;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Movimiento;
 import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
@@ -26,6 +31,8 @@ public class PrincipalActivity extends AppCompatActivity {
     Cliente cliente;
     Activity_Fragment_Global fragment_global;
     ConstraintLayout constraintLayout;
+    SoundPool soundPool;
+    int sonido_de_reproduccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +50,23 @@ public class PrincipalActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.txtSubtitulo);
         textView.setText(cliente.getNombre());
 
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
+        sonido_de_reproduccion = soundPool.load(this, R.raw.sound_short, 1);
+
+
+    }
+
+    public void audioSoundPool(View view){
+        soundPool.play(sonido_de_reproduccion, 1, 1, 1, 0, 0);
+    }
+
+    public void audioMediaPlayer(View view){
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound_long);
+        mediaPlayer.start();
     }
 
     public void onClickBtnSalir(View view) {
+        audioSoundPool(view);
         Intent intent = new Intent(PrincipalActivity.this, MainActivity.class);
         startActivityForResult(intent, 0);
     }
@@ -111,6 +132,11 @@ public class PrincipalActivity extends AppCompatActivity {
                 intent2.putExtra("cliente", cliente);
                 startActivityForResult(intent2, 0);
                 return true;
+            case R.id.action_preferencias:
+                Intent intent3 = new Intent(PrincipalActivity.this, PreferenceActivity.class);
+                startActivityForResult(intent3, 0);
+                intent3.putExtra("cliente", cliente);
+                startActivityForResult(intent3, 0);
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="idioma"
+        android:title="Idioma"
+        android:icon="@drawable/ic_baseline_language_24"
+        android:summary="Elige el idioma que quieras usar"
+        android:dialogTitle="Indicar idioma que se quiere usar"
+        android:entries="@array/idioma"
+        android:entryValues="@array/codigoIdioma"/>
+    <ListPreference
+        android:key="origenDatos"
+        android:title="Origen de datos"
+        android:icon="@drawable/ic_baseline_data_usage_24"
+        android:summary="Origen de daotas usado actualmente"
+        android:dialogTitle="Indicar origen de datos"
+        android:entries="@array/origen_datos"
+        android:entryValues="@array/codigoOrigenDatos"/>
+    <CheckBoxPreference
+        android:id="@+id/musica"
+        android:key="musica"
+        android:title="Música"
+        android:defaultValue="false"
+        android:icon="@drawable/ic_baseline_music_note_24"
+        android:summary="Escuchar la música mientras se ejecuta la aplicación" />
+    <CheckBoxPreference
+        android:key="video"
+        android:title="Vídeo bienvenida"
+        android:defaultValue="false"
+        android:icon="@drawable/ic_baseline_slow_motion_video_24"
+        android:summary="Reproducir vídeo al inicar la aplicación" />
+    <EditTextPreference
+        android:key="nick"
+        android:title="Nick por defecto"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+        android:summary="Introduzca su nick por defecto"
+        android:dialogTitle="Nick por defecto" />
+    <!--
+<MultiSelectListPreference
+    android:key="paisesVisitados"
+    android:title="Paises visitados"
+    android:summary="Lista de paises visitados"
+    android:dialogTitle="Indicar Paises que se ha visitado"
+    />
+    android:entries="@array/pais"
+    android:entryValues="@array/codigopais"
+     -->
+</PreferenceScreen>
+
+

@@ -1,6 +1,7 @@
 package hecrpu.simarro.bancoaplicacion.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -8,18 +9,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import hecrpu.simarro.bancoaplicacion.adaptador.MovimientosCuentaAdapter;
 import hecrpu.simarro.bancoaplicacion.R;
 import hecrpu.simarro.bancoaplicacion.bd.MiBancoOperacional;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Movimiento;
+import hecrpu.simarro.bancoaplicacion.fragment.AllFragment;
+import hecrpu.simarro.bancoaplicacion.fragment.OneFragment;
+import hecrpu.simarro.bancoaplicacion.fragment.TwoFragment;
+import hecrpu.simarro.bancoaplicacion.fragment.ZeroFragment;
 import hecrpu.simarro.bancoaplicacion.pojo.Cuenta;
 import hecrpu.simarro.bancoaplicacion.pojo.Movimiento;
 
-public class MovimientosCuentaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class MovimientosCuentaActivity extends AppCompatActivity{
+    MovimientosCuentaActivity context = this;
     private ListView listaMovimientos;
     private MiBancoOperacional mbo;
     private MovimientosCuentaAdapter<Movimiento> adaptador;
     private Cuenta cuenta;
+    AllFragment allFragment;
+    ZeroFragment zeroFragment;
+    OneFragment oneFragment;
+    TwoFragment twoFragment;
+    private BottomNavigationView navigationView;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -31,6 +44,14 @@ public class MovimientosCuentaActivity extends AppCompatActivity implements Adap
         Cuenta cuenta = (Cuenta) bundle.getSerializable("Cuenta");
         ((Activity_Fragment_Movimiento)getSupportFragmentManager().findFragmentById(R.id.frgMovimientoCuenta)).mostrarDetalle(cuenta);
 
+        navigationView = (BottomNavigationView) findViewById(R.id.menuNavigation);
+        navigationView.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) context);
+
+        allFragment = new AllFragment();
+        zeroFragment = new ZeroFragment();
+        oneFragment = new OneFragment();
+        twoFragment = new TwoFragment();
+
         /*mbo = MiBancoOperacional.getInstance(this);
 
         cuenta = (Cuenta) getIntent().getSerializableExtra("cuenta");
@@ -41,8 +62,23 @@ public class MovimientosCuentaActivity extends AppCompatActivity implements Adap
         listaMovimientos.setOnItemClickListener(this);*/
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onClick(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (view.getId()){
+            case R.id.navigationAll:
+                transaction.replace(R.id.contenedor, allFragment);
+                break;
+            case R.id.navigationZero:
+                transaction.replace(R.id.contenedor, zeroFragment);
+                break;
+            case R.id.navigationOne:
+                transaction.replace(R.id.contenedor, oneFragment);
+                break;
+            case R.id.navigationTwo:
+                transaction.replace(R.id.contenedor, twoFragment);
+                break;
+        }
+        transaction.commit();
 
     }
 }
