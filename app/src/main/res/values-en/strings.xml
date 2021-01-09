@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BankAplication</string>
+    <string name="app_global">Global position</string>
+    <string name="app_ingresos">Income</string>
+    <string name="app_transferencias">Transfers</string>
+    <string name="app_cambiarClave">Change Password</string>
+    <string name="app_promociones">Promotions</string>
+    <string name="app_cajerosCercanos">Nearby Cagers</string>
+    <string name="app_cofiguracion">Setting</string>
+    <string name="app_preferencias">Preferences</string>
+    <string name="app_salir">Go out</string>
+    <string name="titulo">Vankio</string>
+    <string name="subtitulo">Subtítulo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
