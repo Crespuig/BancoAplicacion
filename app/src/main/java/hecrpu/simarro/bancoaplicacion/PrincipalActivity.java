@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -34,6 +35,7 @@ public class PrincipalActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout;
     SoundPool soundPool;
     int sonido_de_reproduccion;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,15 @@ public class PrincipalActivity extends AppCompatActivity {
 
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
         sonido_de_reproduccion = soundPool.load(this, R.raw.sound_short, 1);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound_long);
+
+        prefs = getSharedPreferences("preferenciasbancarias", Context.MODE_PRIVATE);
+
+        if(prefs.getBoolean("musica", false)){
+            mediaPlayer.start();
+        }else{
+            mediaPlayer.stop();
+        }
 
 
     }

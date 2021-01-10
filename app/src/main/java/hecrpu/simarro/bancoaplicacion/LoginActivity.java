@@ -48,8 +48,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
         sonido_de_reproduccion = soundPool.load(this, R.raw.sound_short, 1);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound_long);
 
         prefs = getSharedPreferences("preferenciasbancarias", Context.MODE_PRIVATE);
+
+        /*if(prefs.getBoolean("musica", false)){
+            mediaPlayer.start();
+        }else{
+            mediaPlayer.stop();
+        }*/
 
     }
 
