@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import hecrpu.simarro.bancoaplicacion.activity.ConfiguracionActivity;
 import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
 import hecrpu.simarro.bancoaplicacion.activity.PreferenceActivity;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Global;
@@ -128,15 +129,17 @@ public class PrincipalActivity extends AppCompatActivity {
                 return true;
             case R.id.action_cambiarClave:
                 Intent intent2 = new Intent(PrincipalActivity.this, CambiarClave.class);
-                startActivityForResult(intent2, 0);
                 intent2.putExtra("cliente", cliente);
                 startActivityForResult(intent2, 0);
                 return true;
-            case R.id.action_preferencias:
+            /*case R.id.action_preferencias:
                 Intent intent3 = new Intent(PrincipalActivity.this, PreferenceActivity.class);
-                startActivityForResult(intent3, 0);
                 intent3.putExtra("cliente", cliente);
-                startActivityForResult(intent3, 0);
+                startActivityForResult(intent3, 0);*/
+            case R.id.action_configuracion:
+                Intent intent4 = new Intent(PrincipalActivity.this, ConfiguracionActivity.class);
+                intent4.putExtra("cliente", cliente);
+                startActivityForResult(intent4, 0);
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
         sonido_de_reproduccion = soundPool.load(this, R.raw.sound_short, 1);
 
-        prefs = getSharedPreferences("Preferencias", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("preferenciasbancarias", Context.MODE_PRIVATE);
 
     }
 
@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor.putString("usuario", usuario);
         editor.putString("password", password);
         editor.apply();
-
     }
 
     @Override

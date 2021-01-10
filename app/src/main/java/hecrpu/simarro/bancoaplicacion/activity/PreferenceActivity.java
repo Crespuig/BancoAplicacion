@@ -17,6 +17,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.appcompat.view.menu.ListMenuPresenter;
 
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import hecrpu.simarro.bancoaplicacion.LoginActivity;
 import hecrpu.simarro.bancoaplicacion.PrincipalActivity;
 import hecrpu.simarro.bancoaplicacion.R;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Movimiento;
@@ -52,6 +54,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
         int sonido_de_reproduccion;
         PreferenciasFragment context = this;
 
+
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -76,38 +79,30 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
                 }
             });
 
+            ListPreference idioma = (ListPreference) findPreference("idioma");
 
-
-            final ListPreference idioma = (ListPreference) findPreference("idioma");
-            Utils utils = new Utils();
-
-            if (idioma.getValue().equals("Español")){
-                Utils.setLocale(context.getActivity(), "es");
-            } else if (idioma.getValue().equals("Inglés")){
-                Utils.setLocale(context.getActivity(), "en");
-            }else if (idioma.getValue().equals("Francés")){
-                Utils.setLocale(context.getActivity(), "fr");
-            }
-
-            /*idioma.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            idioma.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object o) {
-                    switch (R.array.codigoIdioma) {
-                        case 0:
+                    switch (o.toString()) {
+                        case "0":
+                            Toast.makeText(context.getActivity(), "ESPAÑOL", Toast.LENGTH_SHORT).show();
                             Locale español = new Locale("es", "ES");
                             Locale.setDefault(español);
                             Configuration config_es = new Configuration();
                             config_es.locale = español;
                             getResources().updateConfiguration(config_es, getResources().getDisplayMetrics());
                             break;
-                        case 1:
+                        case "1":
+                            Toast.makeText(context.getActivity(), "ENGLISH", Toast.LENGTH_SHORT).show();
                             Locale ingles = new Locale("en", "EN");
                             Locale.setDefault(ingles);
                             Configuration config_en = new Configuration();
                             config_en.locale = ingles;
                             getResources().updateConfiguration(config_en, getResources().getDisplayMetrics());
                             break;
-                        case 2:
+                        case "2":
+                            Toast.makeText(context.getActivity(), "FRENCH", Toast.LENGTH_SHORT).show();
                             Locale frances = new Locale("fr", "FR");
                             Locale.setDefault(frances);
                             Configuration config_fr = new Configuration();
@@ -118,8 +113,9 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
                     return false;
                 }
 
-            });*/
+            });
         }
+
 
 
     }

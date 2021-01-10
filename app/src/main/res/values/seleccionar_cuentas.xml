@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cuentas">
+        <item>Cuenta 1</item>
+        <item>Cuenta 2</item>
+        <item>Cuenta 3</item>
+    </string-array>
+    <string-array name="codigoCuentas">
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+    </string-array>
+</resources>

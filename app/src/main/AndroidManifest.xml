@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.ConfiguracionActivity"></activity>
         <activity android:name=".activity.MovimientosCuentaActivity" />
         <activity
             android:name=".activity.GlobalActivity"
