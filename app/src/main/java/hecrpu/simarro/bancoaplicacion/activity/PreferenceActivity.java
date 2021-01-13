@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -17,8 +18,10 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.view.menu.ListMenuPresenter;
 
 import java.util.ArrayList;
@@ -80,44 +83,123 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
             });
 
             ListPreference idioma = (ListPreference) findPreference("idioma");
-
             idioma.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     switch (o.toString()) {
                         case "0":
-                            Toast.makeText(context.getActivity(), "ESPAÑOL", Toast.LENGTH_SHORT).show();
-                            Locale español = new Locale("es", "ES");
-                            Locale.setDefault(español);
-                            Configuration config_es = new Configuration();
-                            config_es.locale = español;
-                            getResources().updateConfiguration(config_es, getResources().getDisplayMetrics());
+                            OnBackPressedCallback back = new OnBackPressedCallback(true) {
+                                @Override
+                                public void handleOnBackPressed() {
+                                    Toast.makeText(context.getActivity(), "ESPAÑOL", Toast.LENGTH_SHORT).show();
+                                    Locale español = new Locale("es", "ES");
+                                    Locale.setDefault(español);
+                                    Configuration config_es = new Configuration();
+                                    config_es.locale = español;
+                                    getResources().updateConfiguration(config_es, getResources().getDisplayMetrics());
+                                }
+                            };
+                            back.handleOnBackPressed();
                             break;
                         case "1":
-                            Toast.makeText(context.getActivity(), "ENGLISH", Toast.LENGTH_SHORT).show();
-                            Locale ingles = new Locale("en", "EN");
-                            Locale.setDefault(ingles);
-                            Configuration config_en = new Configuration();
-                            config_en.locale = ingles;
-                            getResources().updateConfiguration(config_en, getResources().getDisplayMetrics());
+                            OnBackPressedCallback back2 = new OnBackPressedCallback(true) {
+                                @Override
+                                public void handleOnBackPressed() {
+                                    Toast.makeText(context.getActivity(), "ENGLISH", Toast.LENGTH_SHORT).show();
+                                    Locale ingles = new Locale("en", "EN");
+                                    Locale.setDefault(ingles);
+                                    Configuration config_en = new Configuration();
+                                    config_en.locale = ingles;
+                                    getResources().updateConfiguration(config_en, getResources().getDisplayMetrics());
+                                }
+                            };
+                            back2.handleOnBackPressed();
                             break;
                         case "2":
-                            Toast.makeText(context.getActivity(), "FRENCH", Toast.LENGTH_SHORT).show();
-                            Locale frances = new Locale("fr", "FR");
-                            Locale.setDefault(frances);
-                            Configuration config_fr = new Configuration();
-                            config_fr.locale = frances;
-                            getResources().updateConfiguration(config_fr, getResources().getDisplayMetrics());
+                            OnBackPressedCallback back3 = new OnBackPressedCallback(true) {
+                                @Override
+                                public void handleOnBackPressed() {
+                                    Toast.makeText(context.getActivity(), "FRENCH", Toast.LENGTH_SHORT).show();
+                                    Locale frances = new Locale("fr", "FR");
+                                    Locale.setDefault(frances);
+                                    Configuration config_fr = new Configuration();
+                                    config_fr.locale = frances;
+                                    getResources().updateConfiguration(config_fr, getResources().getDisplayMetrics());
+                                }
+                            };
+                            back3.handleOnBackPressed();
                             break;
+                        default:
+                            throw new IllegalStateException("Unexpected value: " + o.toString());
                     }
                     return false;
                 }
 
             });
+
+            ListPreference fuente = (ListPreference) findPreference("fuente");
+            fuente.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object o) {
+                    switch (o.toString()){
+                        case "LSE":
+                            Toast.makeText(context.getActivity(), "LIBERATION SERIF", Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case "CAS":
+                            Toast.makeText(context.getActivity(), "CASUAL", Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case "CUR":
+                            Toast.makeText(context.getActivity(), "CURSIVE", Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case "ANV":
+                            Toast.makeText(context.getActivity(), "MONOSPACE", Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case "DOS":
+                            Toast.makeText(context.getActivity(), "CHILANKA", Toast.LENGTH_SHORT).show();
+
+                            break;
+                    }
+
+                    return false;
+                }
+            });
+
+            ListPreference color = (ListPreference) findPreference("color");
+            color.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object o) {
+                    switch (o.toString()){
+                        case "NAR":
+                            Toast.makeText(context.getActivity(), "NARANJA", Toast.LENGTH_SHORT).show();
+                            int naranja = getResources().getColor(R.color.colorPrimary);
+                            
+                            break;
+                        case "AZU":
+                            Toast.makeText(context.getActivity(), "AZUL", Toast.LENGTH_SHORT).show();
+                            int azul = getResources().getColor(R.color.azul);
+                            break;
+                        case "GRI":
+                            Toast.makeText(context.getActivity(), "GRIS", Toast.LENGTH_SHORT).show();
+                            int gris = getResources().getColor(R.color.gris);
+                            break;
+                        case "NEG":
+                            Toast.makeText(context.getActivity(), "NEGRO", Toast.LENGTH_SHORT).show();
+                            int negro = getResources().getColor(R.color.negro);
+                            break;
+                        case "ROJ":
+                            Toast.makeText(context.getActivity(), "ROJO", Toast.LENGTH_SHORT).show();
+                            int rojo = getResources().getColor(R.color.rojo);
+                            break;
+                    }
+
+                    return false;
+                }
+            });
         }
-
-
-
     }
 
 }

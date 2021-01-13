@@ -59,11 +59,11 @@ public class PrincipalActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("preferenciasbancarias", Context.MODE_PRIVATE);
 
-        if(prefs.getBoolean("musica", false)){
+        /*if(prefs.getBoolean("musica", false)){
             mediaPlayer.start();
         }else{
             mediaPlayer.stop();
-        }
+        }*/
 
 
     }
@@ -148,7 +148,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 intent3.putExtra("cliente", cliente);
                 startActivityForResult(intent3, 0);*/
             case R.id.action_configuracion:
-                Intent intent4 = new Intent(PrincipalActivity.this, ConfiguracionActivity.class);
+                Intent intent4 = new Intent(PrincipalActivity.this, PreferenceActivity.class);
                 intent4.putExtra("cliente", cliente);
                 startActivityForResult(intent4, 0);
             default:

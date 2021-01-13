@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        PreferenceManager.setDefaultValues(this, R.xml.opciones, false);
+
         usuario = (EditText) findViewById(R.id.passworAnterior);
         password = (EditText) findViewById(R.id.passwordNuevo);
 
@@ -42,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnAcceder = (Button) findViewById(R.id.btnAcceder);
         btnAcceder.setOnClickListener(this);
+
 
         usuario.setText("11111111A");
         password.setText("1234");

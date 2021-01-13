@@ -35,6 +35,23 @@
         android:key="nick"
         android:summary="Introduzca su nick por defecto"
         android:title="Nick por defecto" />
+    <ListPreference
+        android:dialogTitle="Fuentes"
+        android:entries="@array/fuentes"
+        android:entryValues="@array/codigoFuentes"
+        android:key="fuente"
+        android:summary="Selecciona la fuente que quieras utilizar"
+        android:title="Fuente"
+        android:icon="@drawable/ic_baseline_font_download_24"
+        />
+    <ListPreference
+        android:dialogTitle="Colores"
+        android:entries="@array/colores"
+        android:entryValues="@array/codigoColores"
+        android:key="color"
+        android:summary="Selecciona el color de los botones"
+        android:title="Color de  los botones"
+        android:icon="@drawable/ic_baseline_color_lens_24"/>
     <MultiSelectListPreference
         android:dialogTitle="Cuentas"
         android:entries="@array/cuentas"
@@ -43,6 +60,7 @@
         android:summary="Selecciona cuentas para operar"
         android:title="Cuentas"
         android:icon="@drawable/ic_baseline_account_balance_24"/>
+
 </PreferenceScreen>
 
 

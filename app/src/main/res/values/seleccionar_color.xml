@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="colores">
+        <item>Naranja</item>
+        <item>Azul</item>
+        <item>Gris</item>
+        <item>Negro</item>
+        <item>Rojo</item>
+    </string-array>
+    <string-array name="codigoColores">
+        <item>NAR</item>
+        <item>AZU</item>
+        <item>GRI</item>
+        <item>NEG</item>
+        <item>ROJ</item>
+    </string-array>
+</resources>
