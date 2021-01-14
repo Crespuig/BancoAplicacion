@@ -16,6 +16,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.style.BackgroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +60,9 @@ public class PrincipalActivity extends AppCompatActivity {
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound_long);
 
         prefs = getSharedPreferences("preferenciasbancarias", Context.MODE_PRIVATE);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(PrincipalActivity.this);
+
 
         /*if(prefs.getBoolean("musica", false)){
             mediaPlayer.start();

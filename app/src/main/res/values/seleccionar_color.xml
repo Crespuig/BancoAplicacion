@@ -8,10 +8,10 @@
         <item>Rojo</item>
     </string-array>
     <string-array name="codigoColores">
-        <item>NAR</item>
-        <item>AZU</item>
-        <item>GRI</item>
-        <item>NEG</item>
-        <item>ROJ</item>
+        <item>#f5830a</item>
+        <item>#2196F3</item>
+        <item>#607D8B</item>
+        <item>#000000</item>
+        <item>#F44336</item>
     </string-array>
 </resources>

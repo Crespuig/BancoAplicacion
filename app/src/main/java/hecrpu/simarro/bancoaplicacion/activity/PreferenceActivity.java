@@ -1,5 +1,6 @@
 package hecrpu.simarro.bancoaplicacion.activity;
 
+import android.annotation.SuppressLint;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.view.menu.ListMenuPresenter;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -36,7 +38,6 @@ import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Movimiento;
 import hecrpu.simarro.bancoaplicacion.pojo.Utils;
 
 public class PreferenceActivity extends android.preference.PreferenceActivity {
-
 
 
     @Override
@@ -57,7 +58,6 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
         int sonido_de_reproduccion;
         PreferenciasFragment context = this;
 
-
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -73,12 +73,12 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
             musica.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                   if (!musica.isChecked()){
-                       mediaPlayer.start();
-                   }else {
-                       mediaPlayer.stop();
-                   }
-                   return true;
+                    if (!musica.isChecked()) {
+                        mediaPlayer.start();
+                    } else {
+                        mediaPlayer.stop();
+                    }
+                    return true;
                 }
             });
 
@@ -88,49 +88,28 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     switch (o.toString()) {
                         case "0":
-                            OnBackPressedCallback back = new OnBackPressedCallback(true) {
-                                @Override
-                                public void handleOnBackPressed() {
-                                    Toast.makeText(context.getActivity(), "ESPAÑOL", Toast.LENGTH_SHORT).show();
-                                    Locale español = new Locale("es", "ES");
-                                    Locale.setDefault(español);
-                                    Configuration config_es = new Configuration();
-                                    config_es.locale = español;
-                                    getResources().updateConfiguration(config_es, getResources().getDisplayMetrics());
-                                }
-                            };
-                            back.handleOnBackPressed();
+                            Toast.makeText(context.getActivity(), "ESPAÑOL", Toast.LENGTH_SHORT).show();
+                            Locale español = new Locale("es", "ES");
+                            Locale.setDefault(español);
+                            Configuration config_es = new Configuration();
+                            config_es.locale = español;
+                            getResources().updateConfiguration(config_es, getResources().getDisplayMetrics());
                             break;
                         case "1":
-                            OnBackPressedCallback back2 = new OnBackPressedCallback(true) {
-                                @Override
-                                public void handleOnBackPressed() {
-                                    Toast.makeText(context.getActivity(), "ENGLISH", Toast.LENGTH_SHORT).show();
-                                    Locale ingles = new Locale("en", "EN");
-                                    Locale.setDefault(ingles);
-                                    Configuration config_en = new Configuration();
-                                    config_en.locale = ingles;
-                                    getResources().updateConfiguration(config_en, getResources().getDisplayMetrics());
-                                }
-                            };
-                            back2.handleOnBackPressed();
+                            Toast.makeText(context.getActivity(), "ENGLISH", Toast.LENGTH_SHORT).show();
+                            Locale ingles = new Locale("en", "EN");
+                            Locale.setDefault(ingles);
+                            Configuration config_en = new Configuration();
+                            config_en.locale = ingles;
+                            getResources().updateConfiguration(config_en, getResources().getDisplayMetrics());
                             break;
                         case "2":
-                            OnBackPressedCallback back3 = new OnBackPressedCallback(true) {
-                                @Override
-                                public void handleOnBackPressed() {
-                                    Toast.makeText(context.getActivity(), "FRENCH", Toast.LENGTH_SHORT).show();
-                                    Locale frances = new Locale("fr", "FR");
-                                    Locale.setDefault(frances);
-                                    Configuration config_fr = new Configuration();
-                                    config_fr.locale = frances;
-                                    getResources().updateConfiguration(config_fr, getResources().getDisplayMetrics());
-                                }
-                            };
-                            back3.handleOnBackPressed();
+                            Toast.makeText(context.getActivity(), "FRENCH", Toast.LENGTH_SHORT).show();
+                            Locale frances = new Locale("fr", "FR");
+                            Locale.setDefault(frances);
+                            Configuration config_fr = new Configuration();
+                            config_fr.locale = frances;
                             break;
-                        default:
-                            throw new IllegalStateException("Unexpected value: " + o.toString());
                     }
                     return false;
                 }
@@ -141,7 +120,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
             fuente.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object o) {
-                    switch (o.toString()){
+                    switch (o.toString()) {
                         case "LSE":
                             Toast.makeText(context.getActivity(), "LIBERATION SERIF", Toast.LENGTH_SHORT).show();
 
@@ -170,29 +149,33 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 
             ListPreference color = (ListPreference) findPreference("color");
             color.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @SuppressLint("ResourceType")
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object o) {
-                    switch (o.toString()){
+                    switch (o.toString()) {
                         case "NAR":
                             Toast.makeText(context.getActivity(), "NARANJA", Toast.LENGTH_SHORT).show();
                             int naranja = getResources().getColor(R.color.colorPrimary);
-                            
                             break;
                         case "AZU":
                             Toast.makeText(context.getActivity(), "AZUL", Toast.LENGTH_SHORT).show();
                             int azul = getResources().getColor(R.color.azul);
+                            addPreferencesFromResource(azul);
                             break;
                         case "GRI":
                             Toast.makeText(context.getActivity(), "GRIS", Toast.LENGTH_SHORT).show();
                             int gris = getResources().getColor(R.color.gris);
+                            addPreferencesFromResource(gris);
                             break;
                         case "NEG":
                             Toast.makeText(context.getActivity(), "NEGRO", Toast.LENGTH_SHORT).show();
                             int negro = getResources().getColor(R.color.negro);
+                            addPreferencesFromResource(negro);
                             break;
                         case "ROJ":
                             Toast.makeText(context.getActivity(), "ROJO", Toast.LENGTH_SHORT).show();
                             int rojo = getResources().getColor(R.color.rojo);
+                            addPreferencesFromResource(rojo);
                             break;
                     }
 
