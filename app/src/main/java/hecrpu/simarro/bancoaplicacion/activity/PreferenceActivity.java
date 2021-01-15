@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -23,6 +24,7 @@ import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.menu.ListMenuPresenter;
 
 import java.security.Principal;
@@ -147,15 +149,18 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
                 }
             });
 
-            ListPreference color = (ListPreference) findPreference("color");
+            /*ListPreference color = (ListPreference) findPreference("color");
             color.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @SuppressLint("ResourceType")
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     switch (o.toString()) {
                         case "NAR":
-                            Toast.makeText(context.getActivity(), "NARANJA", Toast.LENGTH_SHORT).show();
-                            int naranja = getResources().getColor(R.color.colorPrimary);
+                            Toast.makeText(context.getActivity(), "POR DEFECTO", Toast.LENGTH_SHORT).show();
+                            int porDefecto = getResources().getColor(R.color.por_defecto);
+                            Configuration configuration = new Configuration();
+                            configuration.colorMode = porDefecto;
                             break;
                         case "AZU":
                             Toast.makeText(context.getActivity(), "AZUL", Toast.LENGTH_SHORT).show();
@@ -181,7 +186,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 
                     return false;
                 }
-            });
+            });*/
         }
     }
 

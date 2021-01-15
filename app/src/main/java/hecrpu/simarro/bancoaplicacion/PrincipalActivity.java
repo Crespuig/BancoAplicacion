@@ -12,15 +12,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.style.BackgroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ public class PrincipalActivity extends AppCompatActivity {
     SoundPool soundPool;
     int sonido_de_reproduccion;
     private SharedPreferences prefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,28 @@ public class PrincipalActivity extends AppCompatActivity {
 
         prefs = PreferenceManager.getDefaultSharedPreferences(PrincipalActivity.this);
 
+        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Log.i("*********************", getPrefs.getString("color", "#2196F3"));
+        ImageButton btnGlobal = (ImageButton) findViewById(R.id.btnPosGlobal);
+        btnGlobal.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+
+        ImageButton btnIngresos = (ImageButton) findViewById(R.id.btnIngresos);
+        btnIngresos.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+
+        ImageButton btnTransf = (ImageButton) findViewById(R.id.btnTranfer);
+        btnTransf.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+
+        ImageButton btnCamb = (ImageButton) findViewById(R.id.btnPassword);
+        btnCamb.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+
+        ImageButton btnProm = (ImageButton) findViewById(R.id.btnProm);
+        btnProm.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+
+        ImageButton btnCaj = (ImageButton) findViewById(R.id.btnCajero);
+        btnCaj.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+
+        ImageButton btnSalir = (ImageButton) findViewById(R.id.btnSalir);
+        btnSalir.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
 
         /*if(prefs.getBoolean("musica", false)){
             mediaPlayer.start();
@@ -121,6 +147,30 @@ public class PrincipalActivity extends AppCompatActivity {
                 //.addToBackStack(fragment.getTag())
                 .commit();
     }
+
+    /*@Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String background_chooser = getPrefs.getString("prefSetBackground", "#FFFFFF");
+        View view = findViewById(R.id.principalLayout);
+
+        if (background_chooser.equals("#2196F3")) {
+            int azul = getResources().getColor(R.color.azul);
+            view.setBackgroundColor(azul);
+        } else if (background_chooser.equals("#607D8B")) {
+            int gris = getResources().getColor(R.color.gris);
+            view.setBackgroundColor(gris);
+        } else if (background_chooser.equals("#000000")) {
+            int negro = getResources().getColor(R.color.negro);
+            view.setBackgroundColor(negro);
+        } else {
+            int porDefecto = getResources().getColor(R.color.por_defecto);
+            view.setBackgroundColor(porDefecto);
+        }
+
+
+        super.onWindowFocusChanged(hasFocus);
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
