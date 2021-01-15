@@ -9,16 +9,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +29,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Type;
 
 import hecrpu.simarro.bancoaplicacion.activity.ConfiguracionActivity;
 import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
@@ -68,9 +73,10 @@ public class PrincipalActivity extends AppCompatActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(PrincipalActivity.this);
 
         SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Log.i("*********************", getPrefs.getString("color", "#2196F3"));
         ImageButton btnGlobal = (ImageButton) findViewById(R.id.btnPosGlobal);
         btnGlobal.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        TextView textPosGlobal = (TextView) findViewById(R.id.textPosGlobal);
+        textPosGlobal.setTypeface(textPosGlobal.getTypeface(), Typeface.NORMAL);
 
         ImageButton btnIngresos = (ImageButton) findViewById(R.id.btnIngresos);
         btnIngresos.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
@@ -148,29 +154,6 @@ public class PrincipalActivity extends AppCompatActivity {
                 .commit();
     }
 
-    /*@Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String background_chooser = getPrefs.getString("prefSetBackground", "#FFFFFF");
-        View view = findViewById(R.id.principalLayout);
-
-        if (background_chooser.equals("#2196F3")) {
-            int azul = getResources().getColor(R.color.azul);
-            view.setBackgroundColor(azul);
-        } else if (background_chooser.equals("#607D8B")) {
-            int gris = getResources().getColor(R.color.gris);
-            view.setBackgroundColor(gris);
-        } else if (background_chooser.equals("#000000")) {
-            int negro = getResources().getColor(R.color.negro);
-            view.setBackgroundColor(negro);
-        } else {
-            int porDefecto = getResources().getColor(R.color.por_defecto);
-            view.setBackgroundColor(porDefecto);
-        }
-
-
-        super.onWindowFocusChanged(hasFocus);
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
