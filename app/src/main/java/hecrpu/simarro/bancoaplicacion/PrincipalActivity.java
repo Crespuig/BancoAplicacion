@@ -74,27 +74,27 @@ public class PrincipalActivity extends AppCompatActivity {
 
         SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         ImageButton btnGlobal = (ImageButton) findViewById(R.id.btnPosGlobal);
-        btnGlobal.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnGlobal.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
         TextView textPosGlobal = (TextView) findViewById(R.id.textPosGlobal);
         textPosGlobal.setTypeface(textPosGlobal.getTypeface(), Typeface.NORMAL);
 
         ImageButton btnIngresos = (ImageButton) findViewById(R.id.btnIngresos);
-        btnIngresos.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnIngresos.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
 
         ImageButton btnTransf = (ImageButton) findViewById(R.id.btnTranfer);
-        btnTransf.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnTransf.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
 
         ImageButton btnCamb = (ImageButton) findViewById(R.id.btnPassword);
-        btnCamb.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnCamb.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
 
         ImageButton btnProm = (ImageButton) findViewById(R.id.btnProm);
-        btnProm.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnProm.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
 
         ImageButton btnCaj = (ImageButton) findViewById(R.id.btnCajero);
-        btnCaj.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnCaj.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
 
         ImageButton btnSalir = (ImageButton) findViewById(R.id.btnSalir);
-        btnSalir.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#2196F3")));
+        btnSalir.setBackgroundColor(Color.parseColor(getPrefs.getString("color", "#607D8B")));
 
         /*if(prefs.getBoolean("musica", false)){
             mediaPlayer.start();
