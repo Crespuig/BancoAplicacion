@@ -32,7 +32,9 @@ import android.widget.Toast;
 
 import java.lang.reflect.Type;
 
+import hecrpu.simarro.bancoaplicacion.activity.CajerosActivity;
 import hecrpu.simarro.bancoaplicacion.activity.ConfiguracionActivity;
+import hecrpu.simarro.bancoaplicacion.activity.GestionCajeroActivity;
 import hecrpu.simarro.bancoaplicacion.activity.GlobalActivity;
 import hecrpu.simarro.bancoaplicacion.activity.PreferenceActivity;
 import hecrpu.simarro.bancoaplicacion.fragment.Activity_Fragment_Global;
@@ -103,6 +105,8 @@ public class PrincipalActivity extends AppCompatActivity {
         }*/
 
 
+
+
     }
 
     public void audioSoundPool(View view){
@@ -129,6 +133,13 @@ public class PrincipalActivity extends AppCompatActivity {
 
     public void onClickTransferencia(View view) {
         Intent intent = new Intent(PrincipalActivity.this, TransferActivity.class);
+        startActivityForResult(intent, 0);
+        intent.putExtra("cliente", cliente);
+        startActivityForResult(intent, 0);
+    }
+
+    public void onClickCajerosCercanos(View view) {
+        Intent intent = new Intent(PrincipalActivity.this, CajerosActivity.class);
         startActivityForResult(intent, 0);
         intent.putExtra("cliente", cliente);
         startActivityForResult(intent, 0);
