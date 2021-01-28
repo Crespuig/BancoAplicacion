@@ -5,7 +5,7 @@
     <string name="app_transferencias">Transferencias</string>
     <string name="app_cambiarClave">Cambiar clave</string>
     <string name="app_promociones">Promociones</string>
-    <string name="app_cajerosCercanos">Cageros cercanos</string>
+    <string name="app_cajerosCercanos">Cajeros cercanos</string>
     <string name="app_cofiguracion">Configuración</string>
     <string name="app_preferencias">Preferencias</string>
     <string name="app_salir">Salir</string>
@@ -13,9 +13,23 @@
     <string name="subtitulo">Subtítulo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="label_direccion">Dirección:</string>
-    <string name="label_latitud">Latitud:</string>
-    <string name="label_longitud">Longitud:</string>
-    <string name="label_zoom">Zoom:</string>
+    <string name="label_direccion" translatable="false">Dirección:</string>
+    <string name="label_latitud" translatable="false">Latitud:</string>
+    <string name="label_longitud" translatable="false">Longitud:</string>
+    <string name="label_zoom" translatable="false">Zoom:</string>
+    <string name="menu_eliminar" translatable="false">Eliminar</string>
+    <string name="menu_editar" translatable="false">Editar</string>
+    <string name="menu_crear" translatable="false">Nuevo</string>
+    <string name="boton_cancelar" translatable="false">Cancelar</string>
+    <string name="boton_guardar" translatable="false">Guardar</string>
+    <string name="cajero_crear_titulo" translatable="false">Nuevo cajero</string>
+    <string name="cajero_editar_titulo" translatable="false">Editar cajero</string>
+    <string name="cajero_crear_confirmacion" translatable="false">cajero_crear_confirmacion</string>
+    <string name="cajero_editar_confirmacion" translatable="false">Cajero modificado</string>
+    <string name="menu_guardar" translatable="false">Guardar</string>
+    <string name="menu_cancelar" translatable="false">Cancelar</string>
+    <string name="cajero_eliminar_titulo" translatable="false">Eliminar cajero</string>
+    <string name="cajero_eliminar_mensaje" translatable="false">¿Seguro que quieres eliminar el cajero?</string>
+    <string name="cajero_eliminar_confirmacion" translatable="false">Cajero eliminado</string>
 
 </resources>

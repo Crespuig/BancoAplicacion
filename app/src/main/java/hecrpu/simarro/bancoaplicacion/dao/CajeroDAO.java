@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import hecrpu.simarro.bancoaplicacion.bd.MiBD;
-import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
 public class CajeroDAO {
 
@@ -67,25 +66,34 @@ public class CajeroDAO {
         return c;
     }
 
-    public long add(ContentValues contentValues){
-        return MiBD.getDB().insert("cajeros", null, contentValues);
+    public long insert(ContentValues reg){
+        if (db == null)
+            abrir();
+        return db.insert(C_TABLA, null, reg);
     }
-
-    public long update(ContentValues contentValues){
-        String id = contentValues.getAsString("_id");
-
-        int resultado = MiBD.getDB().update("cajeros", contentValues, id, null);
-
-        return resultado;
+    public long update(ContentValues reg){
+        long result = 0;
+        if (db == null)
+            abrir();
+        if (reg.containsKey(C_COLUMNA_ID)) {
+            //
+            // Obtenemos el id y lo borramos de los valores a actualizar, ya que el id no se actualizar
+            //
+            long id = reg.getAsLong(C_COLUMNA_ID);
+            reg.remove(C_COLUMNA_ID);
+            //
+            // Actualizamos el registro con el identificador que hemos extraido
+            //
+            result = db.update(C_TABLA, reg, "_id=" + id, null);
+        }
+        return result;
     }
-
     public void delete(long _id){
         String condicion = C_COLUMNA_ID + "=" + _id;
 
         //Se borra el cliente indicado en el campo de texto
         MiBD.getDB().delete("cajeros", condicion, null);
     }
-
     public Cursor getAll(){
         Cursor cursor = MiBD.getDB().query("cajeros", columnas, null, null, null, null, null);
         return cursor;

@@ -6,81 +6,118 @@
     android:layout_height="match_parent"
     tools:context=".activity.GestionCajeroActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        tools:context=".activity.GestionCajeroActivity">
 
-        <TextView
-            android:id="@+id/label_direccion"
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/toolbar" />
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_direccion"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/direccion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_direccion"
-            android:layout_alignParentLeft="true"
-            android:ems="10" />
-
-        <TextView
-            android:id="@+id/label_latitud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/direccion"
-            android:layout_marginTop="20dp"
-            android:text="@string/label_latitud"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/latitud"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_latitud"
-            android:layout_alignParentLeft="true"
-            android:ems="10"
-            android:inputType="textMultiLine"></EditText>
-
-        <TextView
-            android:id="@+id/label_longitud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/latitud"
-            android:layout_marginTop="20dp"
-            android:text="@string/label_longitud"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/longitud"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_longitud"
-            android:layout_alignParentLeft="true"
-            android:ems="10"></EditText>
-
-        <TextView
-            android:id="@+id/label_zoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/longitud"
-            android:layout_marginTop="20dp"
-            android:text="@string/label_zoom"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/zoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_zoom"
-            android:layout_alignParentLeft="true"
-            android:ems="10"
-            android:inputType="phone"></EditText>
+            android:orientation="vertical"
+            android:padding="10dp">
 
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/label_direccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_direccion"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <EditText
+                android:id="@+id/direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_direccion"
+                android:layout_alignParentLeft="true"
+                android:ems="10" />
+
+            <TextView
+                android:id="@+id/label_latitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/direccion"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_latitud"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/latitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_latitud"
+                android:layout_alignParentLeft="true"
+                android:ems="10"
+                android:inputType="textMultiLine"></EditText>
+
+            <TextView
+                android:id="@+id/label_longitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/latitud"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_longitud"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/longitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_longitud"
+                android:layout_alignParentLeft="true"
+                android:ems="10"></EditText>
+
+            <TextView
+                android:id="@+id/label_zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/longitud"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_zoom"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_zoom"
+                android:layout_alignParentLeft="true"
+                android:ems="10"
+                android:inputType="phone"></EditText>
+
+            <LinearLayout
+                android:id="@+id/botonera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/zoom"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_cancelar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/boton_cancelar" />
+
+                <Button
+                    android:id="@+id/boton_guardar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/boton_guardar" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

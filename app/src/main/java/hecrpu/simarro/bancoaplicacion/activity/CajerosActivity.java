@@ -1,11 +1,15 @@
 package hecrpu.simarro.bancoaplicacion.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -32,6 +36,9 @@ public class CajerosActivity extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cajeros);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         lista = (ListView) findViewById(R.id.lista);
         // Creamos la clase que nos permitira acceder a las operaciones de la db
@@ -90,5 +97,49 @@ public class CajerosActivity extends AppCompatActivity implements AdapterView.On
 
         // Iniciamos la actividad esperando un resultado, que en este caso no nos importa cual sea
         startActivityForResult(i, Constantes.C_VISUALIZAR);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cajeros, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        Intent i;
+        switch (item.getItemId()) {
+            case R.id.menu_crear:
+                i = new Intent(CajerosActivity.this, GestionCajeroActivity.class);
+                i.putExtra(Constantes.C_MODO, Constantes.C_CREAR);
+                startActivityForResult(i, Constantes.C_CREAR);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //
+        // Nos aseguramos que es la petición que hemos realizado
+        //
+        switch(requestCode) {
+            case Constantes.C_CREAR:
+                if (resultCode == RESULT_OK)
+                    recargar_lista();
+            case Constantes.C_VISUALIZAR:
+                if (resultCode == RESULT_OK)
+                    recargar_lista();
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void recargar_lista() {
+        CajeroDAO cajeroDAO = new CajeroDAO(getBaseContext());
+        cajeroDAO.abrir();
+        GestionCajeroAdapter gestionCajeroAdapter = new GestionCajeroAdapter(this, cajeroDAO.getCursor());
+        lista.setAdapter(gestionCajeroAdapter);
     }
 }

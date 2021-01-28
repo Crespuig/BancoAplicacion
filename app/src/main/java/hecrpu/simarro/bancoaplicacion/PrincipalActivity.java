@@ -140,7 +140,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
     public void onClickCajerosCercanos(View view) {
         Intent intent = new Intent(PrincipalActivity.this, CajerosActivity.class);
-        startActivityForResult(intent, 0);
         intent.putExtra("cliente", cliente);
         startActivityForResult(intent, 0);
     }
