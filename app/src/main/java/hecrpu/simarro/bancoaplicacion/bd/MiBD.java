@@ -21,7 +21,7 @@ public class MiBD extends SQLiteOpenHelper implements Serializable {
     //nombre de la base de datos
     private static final String database = "MiBanco";
     //versión de la base de datos
-    private static final int version = 11;
+    private static final int version = 19;
     //Instrucción SQL para crear la tabla de Clientes
     private String sqlCreacionClientes = "CREATE TABLE clientes ( id INTEGER PRIMARY KEY AUTOINCREMENT, nif STRING, nombre STRING, " +
             "apellidos STRING, claveSeguridad STRING, email STRING);";
@@ -93,6 +93,7 @@ public class MiBD extends SQLiteOpenHelper implements Serializable {
 
         insercionDatos(db);
         Log.i("SQLite", "Se crea la base de datos " + database + " version " + version);
+        upgrade_19(db);
     }
 
     @Override
@@ -104,14 +105,31 @@ public class MiBD extends SQLiteOpenHelper implements Serializable {
             db.execSQL( "DROP TABLE IF EXISTS clientes" );
             db.execSQL( "DROP TABLE IF EXISTS cuentas" );
             db.execSQL( "DROP TABLE IF EXISTS movimientos" );
+            db.execSQL("DROP TABLE IF EXISTS cajeros");
             //y luego creamos la nueva tabla
             db.execSQL(sqlCreacionClientes);
             db.execSQL(sqlCreacionCuentas);
             db.execSQL(sqlCreacionMovimientos);
+            db.execSQL(sqlCreacionCajeros);
 
             insercionDatos(db);
             Log.i("SQLite", "Se actualiza versión de la base de datos, New version= " + newVersion  );
         }
+        if (oldVersion < 19) {
+            upgrade_19(db);
+        }
+
+
+    }
+
+    private void upgrade_19(SQLiteDatabase db) {
+        //
+        // Upgrade versión 17: Incluir is_admin
+        //
+        db.execSQL("ALTER TABLE clientes ADD is_admin BOOLEAN NOT NULL DEFAULT 'false'");
+        Log.i(this.getClass().toString(), "Actualización versión 12 finalizada");
+
+        db.execSQL("INSERT INTO clientes(id, nif, nombre, apellidos, claveSeguridad, email, is_admin) VALUES (0, '0', 'Héctor', 'Crespo', '1234', 'hector.pi@tia.es', 'true');");
     }
 
     public void insercionMovimiento(Movimiento m){

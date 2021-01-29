@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import hecrpu.simarro.bancoaplicacion.R;
 import hecrpu.simarro.bancoaplicacion.bd.Constantes;
 import hecrpu.simarro.bancoaplicacion.dao.CajeroDAO;
+import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
 public class GestionCajeroActivity extends AppCompatActivity {
 
@@ -47,11 +49,16 @@ public class GestionCajeroActivity extends AppCompatActivity {
 
     private Button boton_guardar;
     private Button boton_cancelar;
+    private Cliente cliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_cajero);
+
+        /*Bundle bundle = getIntent().getExtras();
+        bundle.getSerializable("cliente");*/
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
@@ -184,10 +191,12 @@ public class GestionCajeroActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();
-        if (modo == Constantes.C_VISUALIZAR)
-            getMenuInflater().inflate(R.menu.menu_gestion_cajeros, menu);
-        else
-            getMenuInflater().inflate(R.menu.menu_cajeros_editar, menu);
+        if (cliente.isIs_admin()) {
+            if (modo == Constantes.C_VISUALIZAR)
+                getMenuInflater().inflate(R.menu.menu_gestion_cajeros, menu);
+            else
+                getMenuInflater().inflate(R.menu.menu_cajeros_editar, menu);
+        }
         return true;
     }
 

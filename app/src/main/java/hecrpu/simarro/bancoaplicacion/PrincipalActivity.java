@@ -139,6 +139,7 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     public void onClickCajerosCercanos(View view) {
+        Log.i("////////////////////", "cliente" + cliente.getNombre());
         Intent intent = new Intent(PrincipalActivity.this, CajerosActivity.class);
         intent.putExtra("cliente", cliente);
         startActivityForResult(intent, 0);

@@ -62,7 +62,7 @@ public class ClienteDAO implements PojoDAO{
         }
 
         String[] columnas = {
-                "id","nif","nombre","apellidos","claveseguridad","email"
+                "id","nif","nombre","apellidos","claveseguridad","email", "is_admin"
         };
         Cursor cursor = MiBD.getDB().query("clientes", columnas, condicion, null, null, null, null);
         Cliente nuevoCliente = null;
@@ -74,6 +74,7 @@ public class ClienteDAO implements PojoDAO{
             nuevoCliente.setApellidos(cursor.getString(3));
             nuevoCliente.setClaveSeguridad(cursor.getString(4));
             nuevoCliente.setEmail(cursor.getString(5));
+            nuevoCliente.setIs_admin(Boolean.parseBoolean(cursor.getString(6)));
 
             // Obtenemos la lista de cuentas que tiene el cliente
             //c.setListaCuentas(MiBD.getInstance(null).getCuentaDAO().getCuentas(c));

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import hecrpu.simarro.bancoaplicacion.adaptador.GestionCajeroAdapter;
 import hecrpu.simarro.bancoaplicacion.bd.Constantes;
 import hecrpu.simarro.bancoaplicacion.bd.MiBD;
 import hecrpu.simarro.bancoaplicacion.dao.CajeroDAO;
+import hecrpu.simarro.bancoaplicacion.pojo.Cliente;
 
 public class CajerosActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
@@ -30,11 +32,17 @@ public class CajerosActivity extends AppCompatActivity implements AdapterView.On
     private GestionCajeroAdapter gestionCajeroAdapter;
     private Cursor cursor;
     private TextView v_txtSinDatos;
+    private Cliente cliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cajeros);
+
+        /*Bundle bundle = getIntent().getExtras();
+        bundle.getSerializable("cliente");*/
+        cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+        Log.i("////////////////////", "cliente" + cliente.getNombre());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
@@ -95,14 +103,20 @@ public class CajerosActivity extends AppCompatActivity implements AdapterView.On
         // Le pasamos el valor del identificador de la hipoteca
         i.putExtra(CajeroDAO.C_COLUMNA_ID, id);
 
+        i.putExtra("cliente", cliente);
+
         // Iniciamos la actividad esperando un resultado, que en este caso no nos importa cual sea
         startActivityForResult(i, Constantes.C_VISUALIZAR);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_cajeros, menu);
+        if (cliente.isIs_admin())
+            getMenuInflater().inflate(R.menu.menu_cajeros, menu);
         return true;
+
+
+
     }
 
     @Override
@@ -113,6 +127,7 @@ public class CajerosActivity extends AppCompatActivity implements AdapterView.On
             case R.id.menu_crear:
                 i = new Intent(CajerosActivity.this, GestionCajeroActivity.class);
                 i.putExtra(Constantes.C_MODO, Constantes.C_CREAR);
+                i.putExtra("cliente", cliente);
                 startActivityForResult(i, Constantes.C_CREAR);
                 return true;
         }
